@@ -1,4 +1,4 @@
-import os, sys, subprocess
+import os, sys, subprocess, readline
 import webbrowser
 
 from pathlib import Path
@@ -22,24 +22,21 @@ def info(text: str) -> None:
 class MutablePath:
     def __init__(self, path: Path | None = None):
         self.root: str = os.path.abspath(os.sep)
-        self.path: Path = path or self.root
+        self.path: Path = path or Path(self.root)
         self.set(str(self.path), [])
-    def set(self, path: str, args: list[str]):
+    def set(self, path: str, cd_history: list[str]):
         old_path = self.path
         if path == "..":
             self.path = self.path.parent
         elif path == ".":
             ...
-        elif path.startswith("(root)"):
-            self.path = self.root
-            self.path /= path.removeprefix("(root)")
         else:
-            if "--abs" not in args or path.startswith("/"):
-                path = self.path / Path(path)
-            self.path = path
+            self.path /= path
         if not os.path.exists(str(self.path)):
             error(f"{self.path} is not a valid path.")
             self.path = old_path
+        else:
+            cd_history.append(str(old_path))
 
 def subprocess_run(command: list[str]):
     try:
@@ -53,13 +50,14 @@ def main() -> None:
         at = sys.argv[1]
     mutable_location: MutablePath = MutablePath(Path(at))
     solo_mode: bool = False
+    cd_history: list[str] = []
     while True:
         try:
             loc: Path = mutable_location.path
             if solo_mode:
                 command: str = "solo " + input(
                     f"{Fore.YELLOW}<{os.name}>{Style.RESET_ALL} {str(loc)} {Fore.MAGENTA}"
-                    f"[solo]{Style.RESET_ALL} {Fore.BLUE}>{Style.RESET_ALL} ")
+                    f"[solo]{Style.RESET_ALL}{Fore.BLUE}>{Style.RESET_ALL} ")
                 if command == "solo exit":
                     solo_mode = False
                     info("Exited solo")
@@ -115,15 +113,19 @@ def main() -> None:
                 else:
                     nonlocal solo_mode
                     solo_mode = True
+            def undo_cd():
+                try:
+                    mutable_location.set(cd_history.pop(), [])
+                except IndexError:
+                    warning("nothing left to undo")
 
             try:
                 {
                     "exit": lambda: (info("Exited pistol"), exit()),
-                    "cd": lambda: mutable_location.set(" ".join(args), args),
-                    "echo": lambda: info(*args),
-                    "dir": lambda: info("\n".join(os.listdir(str(loc / " ".join(args))))),
+                    "cd": lambda: mutable_location.set(args[0], cd_history),
+                    "ucd": lambda: undo_cd(),
                     "solo": run_solo,
-                    "help": webbrowser.open("https://github.com/pixilll/pistol")
+                    "help": lambda: webbrowser.open("https://github.com/pixilll/pistol")
                 }[command]()
             except KeyError:
                 error(f"{command} is not a valid command. try solo {command}")

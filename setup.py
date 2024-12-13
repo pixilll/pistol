@@ -4,7 +4,7 @@ def read_long_description():
     with open('README.md', encoding='utf-8') as f:
         return f.read()
 
-VERSION: str = "1.0.0"
+VERSION: str = "1.1"
 
 setup(
     name='pistol',
