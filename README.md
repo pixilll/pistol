@@ -35,27 +35,22 @@ python3 -m pip install pistol
 
 ## os compability and availability
 
-|---------------|------------------------------------|----------------------------|
-| os            | availability                       | versions compatible        |
-|---------------|------------------------------------|----------------------------|
-| windows 11    | tested, available                  | all versions               |
-| windows >=10  | not tested, should be available    | all versions               |
-| ubuntu        | tested, available                  | all versions               |
-| linux*        | not tested, should be available    | all versions               |
-| macos         | not tested, probably not available | no versions (most likely)  |
-|---------------|------------------------------------|----------------------------|
+| os | availability | versions compatible |
+|----|--------------|---------------------|
+| windows 11 | tested, available | all versions |
+| windows >=10 | not tested, should be available | all versions |
+| ubuntu | tested, available | all versions |
+| linux* | not tested, should be available | all versions |
+| macos | not tested, probably not available | no versions (most likely) |
 
 *linux means linux distributions in general, except for ubuntu which was mentioned beforehand
 
 ## python compatibility and availability
-
-|----------------|------------------------------------|---------------------------|
-| python version | availability                       | versions compatible       |
-|----------------|------------------------------------|---------------------------|
-| python 3.13    | tested, available                  | all versions              |
-| python 3.12    | tested, available                  | all versions              |
-| python >=3.11  | tested, not available              | no versions               |
-|----------------|------------------------------------|---------------------------|
+| python version | availability | versions compatible       |
+|----------------|--------------|---------------------------|
+| python 3.13 | tested, available | all versions |
+| python 3.12 | tested, available | all versions |
+| python >=3.11 | tested, not available | no versions |
 
 ## commands:
 - cd - change current working directory
