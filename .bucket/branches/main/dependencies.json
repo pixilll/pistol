@@ -1,0 +1,7 @@
+{
+    "colorama": {
+        "source": "pip",
+        "version": "latest",
+        "install_command": "pip install colorama"
+    }
+}
