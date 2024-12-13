@@ -9,9 +9,9 @@ VERSION: str = "1.1"
 setup(
     name='pistol',
     version=VERSION,
-    author='dae',
+    author='astridot',
     author_email='pixilreal@gmail.com',
-    description='Smart terminal for smart people.',
+    description='smart terminal for smart people.',
     long_description=read_long_description(),
     long_description_content_type='text/markdown',
     packages=find_packages(),

@@ -1,4 +1,5 @@
-import os, sys, subprocess, readline
+import os, sys, subprocess, readline # NOQA
+# above line is noqa due to readline not being used.
 import webbrowser
 
 from pathlib import Path
