@@ -4,12 +4,11 @@ def read_long_description():
     with open('README.md', encoding='utf-8') as f:
         return f.read()
 
-VERSION: str = "1.4"
-
+from pistol import VERSION
 setup(
     name='pistol',
     version=VERSION,
-    author='astridot',
+    author='dae',
     author_email='pixilreal@gmail.com',
     description='smart terminal for smart people.',
     long_description=read_long_description(),

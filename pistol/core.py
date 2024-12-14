@@ -55,16 +55,33 @@ def main() -> None:
     while True:
         try:
             loc: Path = mutable_location.path
-            if solo_mode:
-                command: str = "solo " + input(
-                    f"{Fore.YELLOW}<{os.name}>{Style.RESET_ALL} {str(loc)} {Fore.MAGENTA}"
-                    f"[solo]{Style.RESET_ALL}{Fore.BLUE}>{Style.RESET_ALL} ")
-                if command == "solo exit":
-                    solo_mode = False
-                    info("Exited solo")
+            try:
+                if solo_mode:
+                    command: str = "solo " + input(
+                        f"➤➤ {Fore.YELLOW}<{os.name}>{Style.RESET_ALL} {str(loc)} {Fore.MAGENTA}"
+                        f"[solo]{Style.RESET_ALL}{Fore.BLUE}>{Style.RESET_ALL} ")
+                    if command == "solo exit":
+                        solo_mode = False
+                        info("exited solo")
+                        continue
+                else:
+                    command: str = input(f"➤➤ {Fore.YELLOW}<{os.name}>{Style.RESET_ALL} {str(loc)}{Fore.BLUE}>{Style.RESET_ALL} ")
+            except EOFError:
+                print()
+                try:
+                    import getpass
+
+                    hint("press ^C to exit pistol")
+                    hint("press any other button to return to pistol")
+
+                    getpass.getpass(f"➤➤ ")
                     continue
-            else:
-                command: str = input(f"{Fore.YELLOW}<{os.name}>{Style.RESET_ALL} {str(loc)}{Fore.BLUE}>{Style.RESET_ALL} ")
+                except KeyboardInterrupt:
+                    command: str = "exit --no-hint"
+                    print()
+                except EOFError:
+                    print()
+                    continue
 
             # Split command into parts
             parts: list[str] = command.split(" ")
@@ -106,29 +123,38 @@ def main() -> None:
             command: str = new[0]
             args: list[str] = new[1:]
 
-            def run_solo():
-                if args:
-                    if args[0] in ["cd", "exit", "help"]:
-                        warning(f"{args[0]} may not work properly when executing using solo")
-                    subprocess_run(args)
-                else:
-                    nonlocal solo_mode
-                    solo_mode = True
-            def undo_cd():
-                try:
-                    mutable_location.set(cd_history.pop(), [])
-                except IndexError:
-                    warning("nothing left to undo")
-
             try:
-                {
-                    "exit": lambda: (info("Exited pistol"), exit()),
-                    "cd": lambda: mutable_location.set(args[0], cd_history),
-                    "ucd": lambda: undo_cd(),
-                    "solo": run_solo,
-                    "help": lambda: webbrowser.open("https://github.com/pixilll/pistol")
-                }[command]()
-            except KeyError:
-                error(f"{command} is not a valid command. try solo {command}")
+                def run_solo():
+                    if args:
+                        if args[0] in ["cd", "exit", "help", "version", "clear", "cls"]:
+                            warning(f"{args[0]} may not work properly when executing using solo")
+                        subprocess_run(args)
+                    else:
+                        nonlocal solo_mode
+                        solo_mode = True
+                def undo_cd():
+                    try:
+                        mutable_location.set(cd_history.pop(), [])
+                    except IndexError:
+                        warning("nothing left to undo")
+
+                from . import VERSION
+
+                try:
+                    {
+                        "exit": lambda: (info("exited pistol"), hint("pressing ^D chord to ^C will exit pistol as well") if "--no-hint" not in args else ..., exit()),
+                        "cd": lambda: mutable_location.set(args[0], cd_history),
+                        "ucd": undo_cd,
+                        "solo": run_solo,
+                        "clear": lambda: subprocess.run("clear"),
+                        "cls": lambda: subprocess.run("clear"),
+                        "help": lambda: webbrowser.open("https://github.com/pixilll/pistol"),
+                        "version": lambda: info(f"pistol {VERSION}")
+                    }[command]()
+                except KeyError:
+                    error(f"{command} is not a valid command")
+                    hint(f"try solo {command}")
+            except IndexError:
+                error(f"not enough arguments supplied for {command}")
         except KeyboardInterrupt:
             print()
