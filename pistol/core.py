@@ -27,7 +27,7 @@ class MutablePath:
     def set(self, path: str, cd_history: list[str], ucd: bool = False, st: bool = False):
         old_path = self.path
         if str(self.path) == str(storage_path) and not ucd:
-            warning("cannot cd out of storage mode, use st or ucd instead.")
+            warning("cannot use cd in storage mode, use st to exit storage mode first.")
             return
         if path == str(storage_path) and not st:
             hint("use the st command to switch to storage mode easier")
@@ -56,8 +56,9 @@ def subprocess_run(command: list[str]):
 def main() -> None:
     at: str = os.getcwd()
     if len(sys.argv) > 1:
-        at = sys.argv[1]
-    mutable_location: MutablePath = MutablePath(Path(at))
+        at = str(storage_path) if sys.argv[1] == "storage" else sys.argv[1]
+    mutable_location: MutablePath = MutablePath(Path(os.getcwd()))
+    mutable_location.set(at, [])
     solo_mode: bool = False
     cd_history: list[str] = []
     while True:
@@ -181,7 +182,8 @@ def main() -> None:
                         "version": lambda: info(f"pistol {VERSION}"),
                         "st": lambda: (
                             mutable_location.set(str(storage_path), cd_history, st=True),
-                            hint("use st again to return to normal mode")) if str(loc) != str(storage_path) else undo_cd()
+                            hint("use st again to return to normal mode")
+                        ) if str(loc) != str(storage_path) else undo_cd()
                     }[command]()
                 except KeyError:
                     error(f"{command} is not a valid command")

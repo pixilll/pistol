@@ -64,3 +64,11 @@ hi
 ➤➤ <posix> /home/astridot/Desktop/Project/pistol> exit --no-hint
 ➤➤ exited pistol
 ```
+
+# 1.7
+- fixed the `<location>` argument
+- made it so you can specify `storage` as the `<location>` parameter to load into `storage` mode instantly (more info in the README.md file)
+- fixed multiple bugs
+- fixed typos
+- `ucd` can still exit storage mode in most cases, but will not be shown in hints due to it no longer working if loading into `storage` mode using the `<location>` argument. (in which case the cd history will be empty and ucd will not work)
+- finished website (https://pixilll.github.io/pistol)

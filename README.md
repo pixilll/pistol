@@ -106,6 +106,38 @@ python3 -m pip install ./pistol
 - if `bucket` is not installed, run `python -m pip install --upgrade pip`, then `pip install bkt` (on windows)
 - if the issue persists, reinstall pistol by running `python -m pip install --upgrade pip`, then `pip install pistol --force`
 
+## how to start pistol
+### arguments
+- all pistol start methods take one argument: `<location>`
+- `<location>` means where pistol will start.
+- if `<location>` is not specified, it will be defaulted to `.`
+- location can be for ex. `.`, `..`, `/home`, `/`, `~`, `C:/`
+- location can also be `storage`, which will enter storage mode instantly.
+- if you want to enter a directory named `storage` in `.`, specify `./storage` instead.
+### method 1: windows, ubuntu/linux executable (recommended)
+- use `pistol <location>`
+- tested to work on both windows and linux if everything is set up correctly on the user's device.
+- recommended for most use cases
+- - quick to type
+- - easy to remember
+### method 2: windows run as python module
+- use `python -m pistol <location>` or `py -m pistol <location>` or similar
+- make sure `python` or `py` are linked to python 3.12 or higher using `python --version` or `py --version`
+- if the output shows that the python version is lower than python 3.12, try installing the newest version [here](https://python.org)
+- once installed, or if you are sure you have python 3.12 or higher installed already, try running `python<version> -m pistol <location>`
+- `<version>` means the version of python you have installed.
+- - examples: `python3.12`, `python3.13`, `python3.14`
+- recommended for internal uses or debugging purposes
+- - if the executable (method 1) does not work, this method should almost always work.
+- - if it doesn't, try reinstalling or upgrading `pistol` using `pip install --force pistol` (to reinstall) or `pip install --upgrade pistol` (to upgrade)
+- - if you are starting `pistol` from within a program, this method is recommended as it is more likely to work on other computers (assuming `pistol` is installed on that computer)
+### method 3: ubuntu/linux run as python module
+- basically the same at the method 2 (read above)
+- run with `python3` instead of `python` or `py`
+### method 4: windows, ubuntu/linux run from git clone
+- applies only if you have run `git clone https://github.com/pixilll/pistol` or `gh repo clone pixilll/pistol` and are in the same cwd as where you have ran that command
+- same as method 2 (on windows) or method 3 (on ubuntu/linux) but you run `<executable> -m pistol.pistol <location>` instead.
+
 ## commands:
 - cd - change current working directory
 - ucd - undo last cd
@@ -160,3 +192,4 @@ pistol	README.md  setup.py
 <posix> /home/astridot/Desktop/Project> exit
 ➤➤ Exited pistol
 ```
+- st - switch to storage mode
