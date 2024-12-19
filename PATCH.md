@@ -72,3 +72,23 @@ hi
 - fixed typos
 - `ucd` can still exit storage mode in most cases, but will not be shown in hints due to it no longer working if loading into `storage` mode using the `<location>` argument. (in which case the cd history will be empty and ucd will not work)
 - finished website (https://pixilll.github.io/pistol)
+
+# 1.8
+- made it so you can start pistol in a new instance on windows or linux if the `--new` or `-n` parameter is specified.
+- - linux: this will only work if gnome-terminal is installed.
+- made more hint messages
+- added the `search` command which will open your browser to the given url
+- added the `whereami` command which will show your current location (even in storage mode)
+- added the `version` command which shows the current version of pistol
+
+# 1.9
+- added the `cdh` command which will show the cd history and where the next `ucd` will take you
+- fixed a bug where you couldn't use `st` to exit storage mode if you entered through the `<location>` argument
+- fixed a bug where running commands that may not work properly using solo would error out
+- made it so using the `version` command would show for ex. `pistol 1.9 for linux` or `pistol 1.9 for windows` instead of `pistol 1.9 for posix` or `pistol 1.9 for nt`
+- - the main prompt will continue to display `nt` for windows and `posix` due to standards of `py:os.name`
+- reworked the main prompt slightly
+- - example of before: `➤➤ <posix> /home/astridot/Desktop/Project/pistol>`
+- - example of after: `➤➤ posix: /home/astridot/Desktop/Project/pistol>`
+- - proposed (and declined) changes: `➤➤ linux: /home/astridot/Desktop/Project/pistol>`
+- completely reworked the security policy (SECURITY.md)

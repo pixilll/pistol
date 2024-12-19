@@ -30,7 +30,7 @@ class MutablePath:
         self.set(str(self.path), [])
     def set(self, path: str, cd_history: list[str], ucd: bool = False, st: bool = False):
         old_path = self.path
-        if str(self.path) == str(STORAGE_PATH) and not ucd:
+        if str(self.path) == str(STORAGE_PATH) and not (ucd or st):
             warning("cannot use cd in storage mode, use st to exit storage mode first.")
             return
         if path == str(STORAGE_PATH) and not st:
@@ -62,18 +62,19 @@ def main() -> None:
     if len(sys.argv) > 1:
         at = str(STORAGE_PATH) if sys.argv[1] == "storage" else sys.argv[1]
     abs_at = os.path.abspath(at).removesuffix("-n").replace(" ", "\\ ")
+    running_as_new: bool = "--running-as-new" in sys.argv
     if "-n" in sys.argv or "--new" in sys.argv:
         match PLATFORM:
             case "windows":
-                subprocess_run(["cmd", "/C", "start", "python", "-m", repr(EP_MODULE), abs_at])
+                subprocess_run(["cmd", "/C", "start", "python", "-m", repr(EP_MODULE), abs_at, "--running-as-new"])
             case "linux":
-                subprocess_run(["gnome-terminal", "--", "bash", "-c", f"cd {SYS_ROOT}; python3 -m '{EP_MODULE}' {abs_at}; exec bash"])
+                hint("not working? make sure gnome-terminal is available")
+                subprocess_run(["gnome-terminal", "--", "bash", "-c", f"cd {SYS_ROOT}; python3 -m '{EP_MODULE}' {abs_at} --running-as-new; exec bash"])
             case _:
                 error("unidentified operating system; could not find a way to open a new terminal.")
-        info("exited pistol")
         exit(0)
     mutable_location: MutablePath = MutablePath(Path(os.getcwd()))
-    mutable_location.set(at, [])
+    mutable_location.set(at, [], st=at==str(STORAGE_PATH))
     solo_mode: str = ""
     cd_history: list[str] = []
     while True:
@@ -83,7 +84,7 @@ def main() -> None:
             try:
                 if solo_mode:
                     command: str = (solo_mode + " " + input(
-                        f"➤➤ {Fore.YELLOW}{PLATFORM}:{Style.RESET_ALL} {disp_loc} {Fore.MAGENTA}"
+                        f"➤➤ {Fore.YELLOW}{os.name}:{Style.RESET_ALL} {disp_loc} {Fore.MAGENTA}"
                         f"[{solo_mode}]{Style.RESET_ALL}{Fore.BLUE}>{Style.RESET_ALL} ")).removeprefix(f"{solo_mode} pistol ")
                     command = command.removeprefix(f"{solo_mode} ") if command.startswith(f"{solo_mode} cd ") else command
                     if command == f"{solo_mode} exit":
@@ -91,7 +92,7 @@ def main() -> None:
                         solo_mode = ""
                         continue
                 else:
-                    command: str = input(f"➤➤ {Fore.YELLOW}{PLATFORM}:{Style.RESET_ALL} {disp_loc}{Fore.BLUE}>{Style.RESET_ALL} ")
+                    command: str = input(f"➤➤ {Fore.YELLOW}{os.name}:{Style.RESET_ALL} {disp_loc}{Fore.BLUE}>{Style.RESET_ALL} ")
             except EOFError:
                 print()
                 try:
@@ -151,14 +152,14 @@ def main() -> None:
 
             try:
                 def run_solo():
+                    nonlocal solo_mode
+
                     if args not in [
                         [],
                         ["pwsh", "-Command"]
                     ]:
-                        force_cwd: bool = False
-                        if "--force-cwd" in args:
-                            args.remove("--force-cwd")
-                            force_cwd = True
+                        force_cwd: bool = "--force-cwd" in args
+                        args.remove("--force-cwd") if "--force-cwd" in args else ...
                         if args[0] in [
                             "cd",
                             "exit",
@@ -170,9 +171,11 @@ def main() -> None:
                             "ucd",
                             "search",
                             "whereami",
-                            "root"
+                            "cdh"
+                            "root",
+                            "pwsolo"
                         ]:
-                            warning(f"{args[0]} may not work properly when executing using {name}")
+                            warning(f"{args[0]} may not work properly when executing using {solo_mode}")
                         old_dir: str = os.getcwd()
                         try:
                             os.chdir(loc)
@@ -187,13 +190,32 @@ def main() -> None:
                         subprocess_run(args)
                         os.chdir(old_dir)
                     else:
-                        nonlocal solo_mode
                         solo_mode = command
-                def undo_cd():
+                def undo_cd(internal: bool = False):
                     try:
                         mutable_location.set(cd_history.pop(), [], ucd=True)
                     except IndexError:
-                        warning("nothing left to undo")
+                        if internal:
+                            return False
+                        else:
+                            warning("nothing left to undo")
+                    return True
+                def st():
+                    if str(loc) != str(STORAGE_PATH):
+                        mutable_location.set(str(STORAGE_PATH), cd_history, st=True),
+                        hint("use st again to return to normal mode")
+                    elif not undo_cd(internal=True):
+                        warning(f"could not find location to exit to, defaulting to {os.getcwd()}")
+                        mutable_location.set(os.getcwd(), [], st=True)
+                def view_cd_history():
+                    if not cd_history:
+                        info("cd history empty")
+                    else:
+                        index: int = 1
+                        for index, item in enumerate(cd_history, start=1):
+                            info(f"{index}: {item}")
+                        info(f"{index+1}: {disp_loc}")
+                        hint(f"{index+1} is your current location. the next ucd will take you to {index}")
 
                 from . import VERSION
 
@@ -202,10 +224,12 @@ def main() -> None:
                         "exit": lambda: (
                             info("exited pistol"),
                             hint("pressing ^D chord to ^C will exit pistol as well") if "--no-hint" not in args else ...,
+                            hint("press ^D to exit the terminal entirely") if running_as_new else ...,
                             exit()
                         ),
                         "cd": lambda: mutable_location.set(args[0], cd_history),
                         "ucd": lambda: undo_cd(),
+                        "cdh": lambda: view_cd_history(),
                         "solo": lambda: run_solo(),
                         "clear": lambda: subprocess.run("clear"),
                         "cls": lambda: subprocess.run("clear"),
@@ -219,10 +243,7 @@ def main() -> None:
                         "whereami": lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"),
                         "root": lambda: mutable_location.set(SYS_ROOT, cd_history),
                         "search": lambda: webbrowser.open(args[0]),
-                        "st": lambda: (
-                            mutable_location.set(str(STORAGE_PATH), cd_history, st=True),
-                            hint("use st again to return to normal mode")
-                        ) if str(loc) != str(STORAGE_PATH) else undo_cd()
+                        "st": lambda: st()
                     }[command]()
                 except KeyError:
                     error(f"{command} is not a valid command")
