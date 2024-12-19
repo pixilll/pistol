@@ -12,7 +12,16 @@ python -m pip install --upgrade pip
 ```
 pip install pistol
 ```
-### 2. linux/ubuntu install using `pip` and `venv` (most recommended for linux machines):
+### 2. new in 2.0: linux/ubuntu install using `pipx` (most recommended for linux machines):
+#### step 1: make sure `pipx` is installed and updated
+```
+sudo apt install pipx
+```
+#### step 2: install pistol
+```
+pipx install pistol
+```
+### 3. linux/ubuntu install using `pip` and `venv`:
 #### step 1: create a virtual environment using `venv`
 ```
 python3 -m venv .venv
@@ -29,8 +38,7 @@ python3 -m pip install --upgrade pip
 ```
 python3 -m pip install pistol
 ```
-#### /!\ disclaimer: installing pistol using the second and fourth method will make pistol only accessible while in the venv environment where it has been installed. you may need to redo step 2 every time you restart your terminal.
-### 3. windows fetch using `git` and install using `pip`:
+### 4. windows fetch using `git` and install using `pip`:
 #### step 1: clone the pistol repository
 ```
 git clone https://github.com/pixilll/pistol
@@ -43,7 +51,20 @@ python -m pip install --upgrade pip
 ```
 pip install ./pistol
 ```
-### 4. linux/ubuntu fetch using `git` and install using `pip` and `venv`:
+### 5. new in 2.0: linux/ubuntu fetch using `git` and install using `pipx`:
+#### step 1: clone the pistol repository
+```
+git clone https://github.com/pixilll/pistol
+```
+#### step 2: make sure `pipx` is installed and updated
+```
+sudo apt install pipx
+```
+#### step 3: install the pistol directory
+```
+pipx install ./pistol
+```
+### 6. linux/ubuntu fetch using `git` and install using `pip` and `venv`:
 #### step 1: create a virtual environment using `venv`
 ```
 python3 -m venv .venv
@@ -64,17 +85,18 @@ python3 -m pip install --upgrade pip
 ```
 python3 -m pip install ./pistol
 ```
-#### /!\ disclaimer: installing pistol on linux using the second and fourth methods will make pistol only accessible while in the venv environment where it has been installed. you may need to redo step 2 every time you restart your terminal.
-### 4. build from source:
-#### pistol is open-source on github, and any source code files can be downloaded individually if needed. pistol can be built on your system relatively easily whether you're on windows or linux.
+### 7. build from source:
+#### pistol is open-source, and any source code files can be downloaded individually if needed. pistol can be built on your system relatively easily whether you're on windows or linux.
+
+#### /!\ disclaimer: installing pistol on linux using the third and fifth methods will make pistol only accessible while in the venv environment where it has been installed. you may need to redo step 2 every time you restart your terminal.
 
 ## which install method should i choose?
 
 | os      | recommended | supported                    |
 |---------|-------------|------------------------------|
-| windows | 1st         | 1st, 3rd                     |
-| ubuntu  | 2nd         | 2nd, 4th                     |
-| linux*  | 2nd         | 2nd, 4th                     |
+| windows | 1st         | 1st, 4th, 7th                |
+| ubuntu  | 2nd         | 2nd, 3rd, 5th, 6th, 7th      |
+| linux*  | 2nd         | 2nd, 3rd, 5th, 6th, 7th      |
 | macos   |             | no install methods for macos |
 
 *linux means linux distributions in general, except for ubuntu which was mentioned beforehand
@@ -84,7 +106,8 @@ python3 -m pip install ./pistol
 | os           | availability                       | versions compatible       |
 |--------------|------------------------------------|---------------------------|
 | windows 11   | tested, available                  | all versions              |
-| windows >=10 | not tested, should be available    | all versions              |
+| windows 8-10 | not tested, should be available    | all versions              |
+| windows <=7  | tested, not available              | no versions               |
 | ubuntu       | tested, available                  | all versions              |
 | linux*       | not tested, should be available    | all versions              |
 | macos        | not tested, probably not available | no versions (most likely) |
@@ -93,11 +116,11 @@ python3 -m pip install ./pistol
 
 ## python compatibility and availability
 
-| python version | availability          | versions compatible |
-|----------------|-----------------------|---------------------|
-| python 3.13    | tested, available     | all versions        |
-| python 3.12    | tested, available     | all versions        |
-| python >=3.11  | tested, not available | no versions         |
+| python version    | availability                              | versions compatible |
+|-------------------|-------------------------------------------|---------------------|
+| python >=3.13     | not tested, should be available available | all versions        |
+| python 3.12, 3.13 | tested, available                         | all versions        |
+| python <=3.11     | tested, not available                     | no versions         |
 
 ## dependencies
 
@@ -154,10 +177,18 @@ python3 -m pip install ./pistol
 <posix> /home/astridot/Desktop> exit
 ➤➤ Exited pistol
 ```
-- exit - exit pistol
-- help - go to the pistol github page
+- exit - exit pistol. this can also be done faster by pressing ^D chord to ^C
+- help - go to the pistol github issues page
 - cls, clear - clears the screen
 - version - returns the current running version of pistol
+- search - open an url in your browser
+- cdh - view your cd history and where the next `ucd` will take you
+- whereami - see your current location (even in storage mode)
+- st - switch to storage mode
+- pistol - only works in solo mode, executes commands in pistol
+- - example: while in solo mode: `pistol whereami`
+- - to start a pistol instance from solo mode, use `python3 -m pistol` instead
+- root - changes the cwd to `/` or whatever the root directory of your system is
 - ### solo
 - - solo uses the system's default shell to run further commands
 - - example:
@@ -192,4 +223,9 @@ pistol	README.md  setup.py
 <posix> /home/astridot/Desktop/Project> exit
 ➤➤ Exited pistol
 ```
-- st - switch to storage mode
+- #### what are types of solo
+- - there are multiple types of solo
+- - each type has the same concept, but different execution
+- #### current types of solo
+- - `solo` - standard execution
+- - `pwsolo` - executes in powershell, regardless of os

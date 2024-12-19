@@ -233,7 +233,7 @@ def main() -> None:
                         "solo": lambda: run_solo(),
                         "clear": lambda: subprocess.run("clear"),
                         "cls": lambda: subprocess.run("clear"),
-                        "help": lambda: webbrowser.open("https://github.com/pixilll/pistol"),
+                        "help": lambda: webbrowser.open("https://github.com/pixilll/pistol/issues"),
                         "version": lambda: info(f"pistol for {PLATFORM} {VERSION}"),
                         "pwsolo": lambda: (
                             args.insert(0, "pwsh"),

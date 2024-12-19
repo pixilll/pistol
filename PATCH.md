@@ -92,3 +92,14 @@ hi
 - - example of after: `➤➤ posix: /home/astridot/Desktop/Project/pistol>`
 - - proposed (and declined) changes: `➤➤ linux: /home/astridot/Desktop/Project/pistol>`
 - completely reworked the security policy (SECURITY.md)
+
+# 2.0
+- pistol can now be installed on linux without managing a venv environment
+- - more info in README.md
+- bug fixes
+- updated README.md
+- 2 new installation types (for linux)
+- tables in README.md have more info now
+- typo fixes
+- major plans for the future
+- `help` command now takes you to the github issues page
