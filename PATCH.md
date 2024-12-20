@@ -128,3 +128,6 @@ hi
 - fixed some bugs on windows
 - fixed bugs with meta.json
 - - meta.json will now be created if it is not already when pistol is started
+
+# 2.1.2
+- updated bucket dependencies
