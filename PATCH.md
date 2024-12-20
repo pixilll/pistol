@@ -131,3 +131,33 @@ hi
 
 # 2.1.2
 - updated bucket dependencies
+
+# 2.2
+- improvements to the `analyse` command
+- you no longer need to restart pistol to refresh the meta file with the `re` command
+- MANY bug fixes
+- pistol will no longer error out, and will rather show the python error in th usual format
+- - ex. before:
+```
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/astridot/Desktop/Project/pistol/pistol/__main__.py", line 3, in <module>
+    main()
+  File "/home/astridot/Desktop/Project/pistol/pistol/core.py", line 61, in main
+    if (os.path.getsize(meta.path) / 1024) > 500: # larger than 100kb
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen genericpath>", line 62, in getsize
+FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/Project/pistol/pistol/meta.json'
+```
+- - ex. after:
+```
+🚨 error: internal: [errno 2] no such file or directory: '/home/astridot/desktop/project/pistol/pistol/meta.json'
+```
+- `core.py` is now split into 10 files
+- fixed a bug where ansi colouring is not rendered correctly in the main prompt
+- - `storage` is no longer coloured anywhere
+- more meta.json space managing options
+- - you can now disable the timestamps prop using `prop timestamps off`
+- - this cuts a command history item size from about 0.5kb to 0.1kb (80% size decrease)
+- - timestamps are enabled by default

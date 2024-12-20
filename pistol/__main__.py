@@ -1,3 +1,3 @@
-from .core import main
+from .ep import ep
 
-main()
+ep()

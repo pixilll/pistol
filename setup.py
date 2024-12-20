@@ -30,7 +30,7 @@ setup(
     install_requires=["colorama", "prompt_toolkit"],
     entry_points={
         'console_scripts': [
-            'pistol=pistol.core:main'
+            'pistol=pistol.ep:ep'
         ]
     },
 )

@@ -197,6 +197,11 @@ python3 -m pip install ./pistol
 - rma - stands for remove alias, removes an alias
 - ca - stands for clear aliases, clears all aliases
 - analyse - analyses the size of pistol's meta file
+- prop - changes small key-boolean pairs in the meta files called 'props'
+- - argument 1 is the name
+- - argument 2 is the value
+- - the value can be true, on, off, false, disabled, enabled, or similar
+- re - refreshes the meta file
 - ### solo
 - - solo uses the system's default shell to run further commands
 - - example:

@@ -1,182 +1,35 @@
 import os, sys, subprocess, webbrowser, platform, json # NOQA
 # above line is noqa due to readline not being used.
 
-from typing import Literal
 from pathlib import Path
 from colorama import Style, Fore, Back
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import InMemoryHistory
 from prompt_toolkit.completion import WordCompleter
-from prompt_toolkit.styles import Style as PTStyle
 from prompt_toolkit.formatted_text import FormattedText
 
-DIR: Path = Path(__file__).parent
-SYS_ROOT: str = os.path.abspath(os.sep)
-STORAGE_PATH: Path = DIR / "storage"
-EP_MODULE: str = str(DIR).removeprefix(SYS_ROOT).replace("\\", "/").replace("/", ".")
-PLATFORM: str = platform.system().lower()
-STYLE = PTStyle.from_dict({
-    'yellow': 'bold fg:yellow',
-    'magenta': 'fg:magenta',
-    'blue': 'bold fg:blue',
-    'reset': '',
-})
-JSON_FRAME: str = """
-{
-    "cmd_history": [],
-    "cd_history": [],
-    "aliases": {}
-}
-"""
+from .mutable_path import MutablePath
+from .constants import (
+    DIR,
+    STORAGE_PATH,
+    PLATFORM,
+    EP_MODULE,
+    SYS_ROOT
+)
+from .logging import (
+    error,
+    info,
+    warning,
+    important,
+    hint
+)
+from .timestamp import Timestamp
+from .subprocess import subprocess_run
+from .meta import MetaJSON
+from .parser import parse_command
+from .prop_state import PropState
 
 history: InMemoryHistory = InMemoryHistory()
-
-def error(text: str) -> None:
-    print(f"🚨 {Fore.RED}error: {text}{Style.RESET_ALL}")
-def hint(text: str) -> None:
-    print(f"💡 {Fore.BLUE}hint: {text}{Style.RESET_ALL}")
-def warning(text: str) -> None:
-    print(f"⚠  {Fore.YELLOW}warning: {text}{Style.RESET_ALL}")
-    # two spaces are on purpose!!
-def important(text: str) -> None:
-    print(f"⚠  {Back.YELLOW}{Fore.BLACK}important: {text}{Style.RESET_ALL}")
-    # two spaces are on purpose!!
-def info(text: str) -> None:
-    print(f"➤➤ {text}")
-
-class MutablePath:
-    def __init__(self, path: Path | None = None):
-        self.root: str = os.path.abspath(os.sep)
-        self.path: Path = path or Path(self.root)
-        self.set(str(self.path), [])
-    def set(self, path: str, cd_history: list[str], ucd: bool = False, st: bool = False):
-        old_path = self.path
-        if str(self.path) == str(STORAGE_PATH) and not (ucd or st):
-            warning("cannot use cd in storage mode, use st to exit storage mode first.")
-            return
-        if path == str(STORAGE_PATH) and not st:
-            hint("use the st command to switch to storage mode easier")
-        if path == "..":
-            self.path = self.path.parent
-        elif path == ".":
-            ...
-        else:
-            self.path /= path
-        if not self.path.exists() and st:
-            warning("storage directory does not exist, creating now.")
-            os.mkdir(str(self.path))
-            info("storage directory created successfully")
-        if not self.path.exists() or not self.path.is_dir():
-            error(f"{self.path} is not a valid path.")
-            self.path = old_path
-        else:
-            cd_history.append(str(old_path))
-
-def subprocess_run(command: list[str]):
-    try:
-        subprocess.run(command)
-    except Exception as exc:
-        error(f"solo: {exc}")
-
-class Timestamp:
-    def __init__(self, date: dict, time: dict, time_format: Literal["eu", "us"] = "eu"):
-        self.date: dict = date
-        self.time: dict = time
-        self.repr_date_eu: str = f"{date['name']} {date['day']}.{date['month']}.{date['year']}"
-        self.repr_date_us: str = f"{date['name']} {date['month']}/{date['day']}/{date['year']}"
-        self.repr_date: str = self.repr_date_us if time_format == "us" else self.repr_date_eu
-        self.repr_time: str = f"{time['hours']}:{time['minutes']}:{time['seconds']}"
-        self.repr_full: str = f"{self.repr_date} {self.repr_time}"
-        self.time_format: str = time_format
-    def __repr__(self):
-        return self.repr_full
-    def __str__(self):
-        return repr(self)
-    @classmethod
-    def from_now(cls, time_format: Literal["eu", "us"] = "eu"):
-        from datetime import datetime
-
-        now = datetime.now()
-        return cls(
-            date={
-                "name": now.strftime("%A").lower(),
-                "day": now.strftime("%d"),
-                "month": now.strftime("%m"),
-                "year": now.strftime("%Y")
-            },
-            time={
-                "hours": now.strftime("%H"),
-                "minutes": now.strftime("%M"),
-                "seconds": now.strftime("%S")
-            },
-            time_format=time_format
-        )
-    @classmethod
-    def from_dict(cls, obj):
-        return cls(
-            date={
-                "name": obj["name"],
-                "day": obj["day"],
-                "month": obj["month"],
-                "year": obj["year"]
-            },
-            time={
-                "hours": obj["hours"],
-                "minutes": obj["minutes"],
-                "seconds": obj["seconds"]
-            },
-            time_format=obj["time_format"]
-        )
-    def to_dict(self):
-        return {
-            "name": self.date["name"],
-            "day": self.date["day"],
-            "month": self.date["month"],
-            "year": self.date["year"],
-            "hours": self.time["hours"],
-            "minutes": self.time["minutes"],
-            "seconds": self.time["seconds"],
-            "time_format": self.time_format
-        }
-
-class MetaJSON:
-    def __init__(self, path: Path):
-        self.path: Path = path
-    def create(self):
-        with self.path.open("w", encoding="utf-8") as file:
-            file.write(JSON_FRAME)
-    def write(self, data: dict):
-        with self.path.open("w", encoding="utf-8") as file:
-            json.dump(data, file, ensure_ascii=False, indent=4) # NOQA
-    def read(self) -> dict:
-        if not self.path.exists():
-            raise FileNotFoundError(f"The file {self.path} does not exist.")
-        with self.path.open(encoding="utf-8") as file:
-            return json.load(file)
-
-
-def parse_command(parts: list[str]):
-    new: list[str] = []
-    string: str = ""
-
-    for part in parts:
-        if not part:
-            continue
-        elif string:
-            if part[-1] == string:
-                new[-1] += " " + part[:-1]
-                string = ""
-            else:
-                new[-1] += " " + part
-        elif part[0] in "\"'":
-            if len(part) > 1 and part[-1] == part[0]:
-                new.append(part[1:-1])
-            else:
-                new.append(part[1:])
-                string = part[0]
-        else:
-            new.append(part)
-    return new, string
 
 def main() -> None:
     meta: MetaJSON = MetaJSON(DIR / "meta.json")
@@ -198,28 +51,28 @@ def main() -> None:
         exit(0)
     mutable_location: MutablePath = MutablePath(Path(os.getcwd()))
     cd_history: list[str] = meta.read()["cd_history"]
-    cmd_history: list[tuple[Timestamp, str]] = []
+    cmd_history: list[tuple[Timestamp | str, str]] = []
     for timestamp, cmd in meta.read()["cmd_history"]:
-        cmd_history.append((Timestamp.from_dict(timestamp), cmd))
+        cmd_history.append((Timestamp.from_dict(timestamp) if timestamp != "n/a" else timestamp, cmd))
     mutable_location.set(at, [], st=at==str(STORAGE_PATH))
     solo_mode: str = ""
     aliases: dict[str, str] = meta.read()["aliases"]
     while True:
-        if (os.path.getsize(meta.path) / 1024) > 500:
+        if (os.path.getsize(meta.path) / 1024) > 500: # larger than 100kb
             warning("pistol's meta file is getting quite big! run analyse to learn more and free up space.")
         try:
             loc: Path = mutable_location.path
-            disp_loc: str = f"{Back.YELLOW}{Fore.BLACK}storage{Style.RESET_ALL}" if str(loc) == str(STORAGE_PATH) else loc
+            disp_loc: str = "storage" if str(loc) == str(STORAGE_PATH) else loc
             autocomplete: list[str] = [f"./{item}" for item in os.listdir(loc) if not item.startswith(".")] + [".."]
             completer: WordCompleter = WordCompleter(autocomplete, ignore_case=True)
             session: PromptSession = PromptSession(history=history, completer=completer)
             try:
                 if solo_mode:
                     prompt_text: FormattedText = FormattedText([
-                        ('class:yellow', f"➤➤ {os.name}: "),
-                        ('', f"{disp_loc} "),
-                        ('class:magenta', f"[{solo_mode}]"),
-                        ('class:blue', "> "),
+                        ("class:yellow", f"➤➤ {os.name}: "),
+                        ("", f"{disp_loc} "),
+                        ("class:magenta", f"[{solo_mode}]"),
+                        ("class:blue", "> "),
                     ])
                     full_command: str = (solo_mode + " " + session.prompt(prompt_text)).removeprefix(f"{solo_mode} pistol ")
                     full_command = full_command.removeprefix(f"{solo_mode} ") if full_command.startswith(f"{solo_mode} cd ") else full_command
@@ -262,18 +115,20 @@ def main() -> None:
             command: str = new[0]
             args: list[str] = new[1:]
 
-            cmd_history.append((Timestamp.from_now(), full_command))
+            cmd_history.append((Timestamp.from_now() if meta.fetch("timestamps", True).state else "n/a", full_command))
 
             try:
-                def exit_pistol():
+                def refresh():
                     meta_contents = meta.read()
                     meta_contents["cd_history"] = cd_history
                     writable_cmd_history = []
-                    for timestamp, cmd in cmd_history: # NOQA
-                        writable_cmd_history.append((timestamp.to_dict(), cmd))
+                    for timestamp, cmd in cmd_history:  # NOQA
+                        writable_cmd_history.append((timestamp.to_dict() if timestamp != "n/a" else timestamp, cmd))
                     meta_contents["cmd_history"] = writable_cmd_history
                     meta_contents["aliases"] = aliases
                     meta.write(meta_contents)
+                def exit_pistol():
+                    refresh()
                     info("exited pistol")
                     if "--no-hint" not in args:
                         hint("pressing ^D chord to ^C will exit pistol as well")
@@ -343,7 +198,11 @@ def main() -> None:
                     else:
                         hint("find a command in your command history by entering it exactly,")
                         hint("or just a part of it you remember. type help for more info.")
-                        search: str = input(f"➤➤ {Back.YELLOW}query{Style.RESET_ALL}> ")
+                        try:
+                            search: str = input(f"➤➤ {Back.YELLOW}query{Style.RESET_ALL}> ")
+                        except EOFError:
+                            print()
+                            return
                         if search == "help":
                             info("command history is saved even after you exit pistol")
                             important("command history may not be saved if pistol is reinstalled,")
@@ -389,8 +248,18 @@ def main() -> None:
                     info("- cch to clear command history (usually takes up the most space)")
                     info("- ccdh to clear cd history")
                     info("- ca to clear aliases")
-                    important("pistol must be restarted in order for changes to take effect")
-
+                    info("- prop timestamps false to disable timestamps for command history items. this significantly reduces the size of the items.")
+                    important("remember to run re so changes can take effect")
+                def set_property():
+                    meta_contents = meta.read()
+                    try:
+                        state = PropState.from_string(args[1])
+                    except KeyError:
+                        error(f"state must be in {', '.join(PropState.options)}")
+                    else:
+                        meta_contents["props"] |= {args[0]: state.state}
+                        meta.write(meta_contents)
+                        info(f"{args[0]} set to {state.to_string()}")
                 try:
                     commands: dict = {
                         "exit": lambda: exit_pistol(),
@@ -427,7 +296,12 @@ def main() -> None:
                             clear_aliases(),
                             info("aliases cleared")
                         ),
-                        "analyse": lambda: analyse()
+                        "analyse": lambda: analyse(),
+                        "prop": lambda: set_property(),
+                        "re": lambda: (
+                            refresh(),
+                            info("refreshed meta file")
+                        )
                     }
                     solo_commands: list[str] = [
                         "solo",
