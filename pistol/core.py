@@ -1,11 +1,5 @@
-import os, sys, subprocess, readline, webbrowser, platform, json # NOQA
+import os, sys, subprocess, webbrowser, platform, json # NOQA
 # above line is noqa due to readline not being used.
-
-# {
-#     "cmd_history": [],
-#     "cd_history": [],
-#     "aliases": {}
-# }
 
 from typing import Literal
 from pathlib import Path
@@ -27,6 +21,13 @@ STYLE = PTStyle.from_dict({
     'blue': 'bold fg:blue',
     'reset': '',
 })
+JSON_FRAME: str = """
+{
+    "cmd_history": [],
+    "cd_history": [],
+    "aliases": {}
+}
+"""
 
 history: InMemoryHistory = InMemoryHistory()
 
@@ -141,6 +142,9 @@ class Timestamp:
 class MetaJSON:
     def __init__(self, path: Path):
         self.path: Path = path
+    def create(self):
+        with self.path.open("w", encoding="utf-8") as file:
+            file.write(JSON_FRAME)
     def write(self, data: dict):
         with self.path.open("w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4) # NOQA
@@ -176,6 +180,7 @@ def parse_command(parts: list[str]):
 
 def main() -> None:
     meta: MetaJSON = MetaJSON(DIR / "meta.json")
+    meta.create()
     at: str = os.getcwd()
     if len(sys.argv) > 1:
         at = str(STORAGE_PATH) if sys.argv[1] == "storage" else sys.argv[1]

@@ -123,3 +123,8 @@ hi
 - - files are now marked as 'invalid paths'
 - much more
 - note: this update is meant to go along with 2.0, which did not offer many changes beside the `pipx` release.
+
+# 2.1.1
+- fixed some bugs on windows
+- fixed bugs with meta.json
+- - meta.json will now be created if it is not already when pistol is started

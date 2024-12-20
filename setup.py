@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 
 # everything to make sure is done before a push (reminder for dae)
 # clear the storage directory
-# clear meta.json (reference in core.py)
 # make a patch entry
 # add all new commands to README.md
 # UPDATE VERSION IN __init__.py
