@@ -158,7 +158,7 @@ python3 -m pip install ./pistol
 - basically the same at the method 2 (read above)
 - run with `python3` instead of `python` or `py`
 ### method 4: windows, ubuntu/linux run from git clone
-- applies only if you have run `git clone https://github.com/pixilll/pistol` or `gh repo clone pixilll/pistol` and are in the same cwd as where you have ran that command
+- applies only if you have run `git clone https://github.com/pixilll/pistol` or `gh repo clone pixilll/pistol` and are in the same cwd as where you have run that command
 - same as method 2 (on windows) or method 3 (on ubuntu/linux) but you run `<executable> -m pistol.pistol <location>` instead.
 
 ## commands:
@@ -182,13 +182,21 @@ python3 -m pip install ./pistol
 - cls, clear - clears the screen
 - version - returns the current running version of pistol
 - search - open an url in your browser
-- cdh - view your cd history and where the next `ucd` will take you
+- cdh - stands for cd history, displays your cd history and where the next `ucd` will take you
+- ccdh - stands for clear cd history, clears the cd history
 - whereami - see your current location (even in storage mode)
 - st - switch to storage mode
 - pistol - only works in solo mode, executes commands in pistol
 - - example: while in solo mode: `pistol whereami`
 - - to start a pistol instance from solo mode, use `python3 -m pistol` instead
 - root - changes the cwd to `/` or whatever the root directory of your system is
+- rs - stands for reverse search, works somewhat like ^R in bash
+- cch - stands for clear command history, clears the command history
+- rmc - stands for remove command, removes a command from the command history
+- alias - creates an alias for a command
+- rma - stands for remove alias, removes an alias
+- ca - stands for clear aliases, clears all aliases
+- analyse - analyses the size of pistol's meta file
 - ### solo
 - - solo uses the system's default shell to run further commands
 - - example:

@@ -103,3 +103,23 @@ hi
 - typo fixes
 - major plans for the future
 - `help` command now takes you to the github issues page
+
+# 2.1
+- HUGE update
+- 8 new commands
+- - more info in README.md
+- new `meta.json` file
+- - this means cd history, command history, and aliases are saved even after you exit pistol
+- autocompletion of file names
+- - files in the current location will be displayed for autocompletion
+- - after a whitespace character (e.g. space), press up and down arrows to cycle through the paths
+- - this includes `..`
+- - note: items starting with `.` are considered hidden and do not show up in autocomplete
+- colours in the main prompt are tweaked slightly (more saturated)
+- - this is not completely intentional, as pistol uses a new prompt manager which renders colours differently.
+- - only the main prompt colours are changes, all other colours are still the same
+- bug fixes
+- fixed a bug where cding into a path that is a file would error out
+- - files are now marked as 'invalid paths'
+- much more
+- note: this update is meant to go along with 2.0, which did not offer many changes beside the `pipx` release.

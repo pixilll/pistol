@@ -1,5 +1,13 @@
 from setuptools import setup, find_packages
 
+# everything to make sure is done before a push (reminder for dae)
+# clear the storage directory
+# clear meta.json (reference in core.py)
+# make a patch entry
+# add all new commands to README.md
+# UPDATE VERSION IN __init__.py
+# always check if the pypi release finished successfully
+
 def read_long_description():
     with open('README.md', encoding='utf-8') as f:
         return f.read()
@@ -20,7 +28,7 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.12',
-    install_requires=["colorama"],
+    install_requires=["colorama", "prompt_toolkit"],
     entry_points={
         'console_scripts': [
             'pistol=pistol.core:main'
