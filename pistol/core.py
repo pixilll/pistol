@@ -238,6 +238,7 @@ def main() -> None:
                 def remove_from_aliases():
                     try:
                         del aliases[args[0]]
+                        info(f"removed alias {args[0]}")
                     except KeyError:
                         error(f"alias {args[0]} does not exist.")
                 def clear_aliases():
@@ -245,6 +246,7 @@ def main() -> None:
                     aliases = {}
                 def analyse():
                     info(f"pistol's meta file is currently {os.path.getsize(meta.path) / 1024:.2f}kb large")
+                    info(f"it is stored in {meta.path}")
                     info(f"the meta file includes {len(cd_history)} cd history item(s),")
                     info(f"{len(cmd_history)} command history item(s),")
                     info(f"and {len(aliases)} alias(es).")
@@ -270,7 +272,7 @@ def main() -> None:
                         info(f"prop {args[0]} - {PropState(props[args[0]]).to_string()}")
                     else:
                         info(f"prop {args[0]} - not specified; cannot define state.")
-                    hint(f"use prop {args[0]} on/off to switch the state")
+                    hint(f"use prop {args[0]} true/false to switch the state")
                 try:
                     commands: dict = {
                         "exit": lambda: exit_pistol(),

@@ -183,3 +183,9 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 - tiny update
 - updated README.md
 - cleared meta.json to avoid artifacts when building
+
+# 2.3.2
+- tiny update
+- removing an alias has a confirmation message now
+- minor changes
+- typo fixes

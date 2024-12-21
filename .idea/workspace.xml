@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f45d071-f47b-4e4c-8bbf-a43265397f5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pistol/meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PATCH.md" beforeDir="false" afterPath="$PROJECT_DIR$/PATCH.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/core.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
