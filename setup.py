@@ -3,6 +3,7 @@ from setuptools import setup, find_packages
 # everything to make sure is done before a push (reminder for dae)
 # clear the storage directory
 # make a patch entry
+# delete meta.json
 # add all new commands to README.md
 # UPDATE VERSION IN __init__.py
 # always check if the pypi release finished successfully

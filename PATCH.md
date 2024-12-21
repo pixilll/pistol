@@ -178,3 +178,8 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 - - basically, if you were running `pwsolo`, the error would still be marked as `solo`
 - many small changes
 - various bug fixes
+
+# 2.3.1
+- tiny update
+- updated README.md
+- cleared meta.json to avoid artifacts when building
