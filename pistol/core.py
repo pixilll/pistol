@@ -1,8 +1,7 @@
-import os, sys, subprocess, webbrowser, platform, json # NOQA
-# above line is noqa due to readline not being used.
+import os, sys, subprocess, webbrowser
 
 from pathlib import Path
-from colorama import Style, Fore, Back
+from colorama import Style, Back
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import InMemoryHistory
 from prompt_toolkit.completion import WordCompleter
@@ -34,18 +33,23 @@ history: InMemoryHistory = InMemoryHistory()
 def main() -> None:
     meta: MetaJSON = MetaJSON(DIR / "meta.json")
     meta.create()
-    at: str = os.getcwd()
+    at: str = (meta.read()["last_location"] or os.getcwd()) if meta.fetch("persistent-location").state else os.getcwd()
     if len(sys.argv) > 1:
-        at = str(STORAGE_PATH) if sys.argv[1] == "storage" else sys.argv[1]
+        if sys.argv[1] == "storage":
+            at = str(STORAGE_PATH)
+        elif sys.argv[1] == "last" and meta.fetch("persistent-location").state:
+            at = meta.read()["last_location"] or os.getcwd()
+        else:
+            at = sys.argv[1]
     abs_at = os.path.abspath(at).removesuffix("-n").replace(" ", "\\ ")
     running_as_new: bool = "--running-as-new" in sys.argv
     if "-n" in sys.argv or "--new" in sys.argv:
         match PLATFORM:
             case "windows":
-                subprocess_run(["cmd", "/C", "start", "python", "-m", repr(EP_MODULE), abs_at, "--running-as-new"])
+                subprocess_run(["cmd", "/C", "start", "python", "-m", repr(EP_MODULE), abs_at, "--running-as-new"], "internal")
             case "linux":
                 hint("not working? make sure gnome-terminal is available")
-                subprocess_run(["gnome-terminal", "--", "bash", "-c", f"cd {SYS_ROOT}; python3 -m '{EP_MODULE}' {abs_at} --running-as-new; exec bash"])
+                subprocess_run(["gnome-terminal", "--", "bash", "-c", f"cd {SYS_ROOT}; python3 -m '{EP_MODULE}' {abs_at} --running-as-new; exec bash"], "internal")
             case _:
                 error("unidentified operating system; could not find a way to open a new terminal.")
         exit(0)
@@ -59,7 +63,7 @@ def main() -> None:
     aliases: dict[str, str] = meta.read()["aliases"]
     while True:
         if (os.path.getsize(meta.path) / 1024) > 500: # larger than 100kb
-            warning("pistol's meta file is getting quite big! run analyse to learn more and free up space.")
+            warning("pistol's meta file is getting quite big! run meta to learn more and free up space.")
         try:
             loc: Path = mutable_location.path
             disp_loc: str = "storage" if str(loc) == str(STORAGE_PATH) else loc
@@ -115,7 +119,7 @@ def main() -> None:
             command: str = new[0]
             args: list[str] = new[1:]
 
-            cmd_history.append((Timestamp.from_now() if meta.fetch("timestamps", True).state else "n/a", full_command))
+            cmd_history.append((Timestamp.from_now() if meta.fetch("timestamps").state else "n/a", full_command))
 
             try:
                 def refresh():
@@ -157,7 +161,7 @@ def main() -> None:
                             else:
                                 warning(f"tried to execute a solo command in a directory that does not exist. solo will execute it in {old_dir} instead.")
                                 hint(f"rerun the command with the --force-cwd option to run in {disp_loc}.")
-                        subprocess_run(args)
+                        subprocess_run(args, command)
                         os.chdir(old_dir)
                     else:
                         solo_mode = command
@@ -249,17 +253,24 @@ def main() -> None:
                     info("- ccdh to clear cd history")
                     info("- ca to clear aliases")
                     info("- prop timestamps false to disable timestamps for command history items. this significantly reduces the size of the items.")
-                    important("remember to run re so changes can take effect")
+                    important("prop auto-re is disabled. remember to run re so changes can take effect") if not meta.fetch("auto-re").state else ...
                 def set_property():
                     meta_contents = meta.read()
                     try:
                         state = PropState.from_string(args[1])
                     except KeyError:
-                        error(f"state must be in {', '.join(PropState.options)}")
+                        error(f"state must be {', '.join(PropState.options)}, or check")
                     else:
                         meta_contents["props"] |= {args[0]: state.state}
                         meta.write(meta_contents)
                         info(f"{args[0]} set to {state.to_string()}")
+                def view_property():
+                    props = meta.read()["props"]
+                    if args[0] in list(props.keys()):
+                        info(f"prop {args[0]} - {PropState(props[args[0]]).to_string()}")
+                    else:
+                        info(f"prop {args[0]} - not specified; cannot define state.")
+                    hint(f"use prop {args[0]} on/off to switch the state")
                 try:
                     commands: dict = {
                         "exit": lambda: exit_pistol(),
@@ -273,7 +284,7 @@ def main() -> None:
                         "solo": lambda c: run_solo(c),
                         "clear": lambda: subprocess.run("clear"),
                         "cls": lambda: subprocess.run("clear"),
-                        "help": lambda: webbrowser.open("https://github.com/pixilll/pistol/issues"),
+                        "help": lambda: webbrowser.open("https://github.com/pixilll/pistol/blob/main/README.md"),
                         "version": lambda: info(f"pistol for {PLATFORM} {VERSION}"),
                         "pwsolo": lambda c: (
                             args.insert(0, "pwsh"),
@@ -296,8 +307,8 @@ def main() -> None:
                             clear_aliases(),
                             info("aliases cleared")
                         ),
-                        "analyse": lambda: analyse(),
-                        "prop": lambda: set_property(),
+                        "meta": lambda: analyse(),
+                        "prop": lambda: view_property() if args[1] == "check" else set_property(),
                         "re": lambda: (
                             refresh(),
                             info("refreshed meta file")
@@ -317,7 +328,9 @@ def main() -> None:
                         commands[command]()
                 except KeyError:
                     error(f"{command} is not a valid command")
-                    hint(f"try solo {command}")
+                    hint(f"try solo {full_command}")
+                if meta.fetch("auto-re", PropState(True)).state:
+                    refresh()
             except IndexError:
                 error(f"not enough arguments supplied for {command}")
         except KeyboardInterrupt:

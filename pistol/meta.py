@@ -21,5 +21,5 @@ class MetaJSON:
             raise FileNotFoundError(f"The file {self.path} does not exist.")
         with self.path.open(encoding="utf-8") as file:
             return json.load(file)
-    def fetch(self, key: str, default: bool = False):
-        return PropState(self.read()["props"].get(key, default))
+    def fetch(self, key: str, default: PropState | None = None):
+        return PropState(self.read()["props"].get(key, default or PropState(True)))

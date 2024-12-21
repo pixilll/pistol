@@ -178,7 +178,7 @@ python3 -m pip install ./pistol
 ➤➤ Exited pistol
 ```
 - exit - exit pistol. this can also be done faster by pressing ^D chord to ^C
-- help - go to the pistol github issues page
+- help - go to the pistol documentation page
 - cls, clear - clears the screen
 - version - returns the current running version of pistol
 - search - open an url in your browser

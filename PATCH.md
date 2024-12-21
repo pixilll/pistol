@@ -158,6 +158,23 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 - fixed a bug where ansi colouring is not rendered correctly in the main prompt
 - - `storage` is no longer coloured anywhere
 - more meta.json space managing options
-- - you can now disable the timestamps prop using `prop timestamps off`
+- - you can now disable the timestamps prop using `prop timestamps false`
 - - this cuts a command history item size from about 0.5kb to 0.1kb (80% size decrease)
 - - timestamps are enabled by default
+
+# 2.3
+- `analyse` command renamed to `meta`
+- `re` is automatically ran after every command
+- - can be disabled using `prop auto-re false`
+- `help` command now takes you to the documentation
+- argument 2 on `prop` can now be `check`, to check the state of the prop
+- location is now persistent, which means that if the `<location>` argument is not filled, pistol will automatically load to where you last left off
+- - if there is no previous location, pistol will default to the cwd
+- - this can be disabled using `prop persistent-location false`
+- - this is enabled by default
+- - you can also specify `last` as the `<location>` argument, which will do the same as without specifying it
+- - the `persistent-location` prop still has to be enabled for `pistol last` to work.
+- fixed a bug where if a solo command raises an error, it is marked as `solo`, no matter the actual solo command.
+- - basically, if you were running `pwsolo`, the error would still be marked as `solo`
+- many small changes
+- various bug fixes
