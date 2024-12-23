@@ -31,7 +31,8 @@ setup(
     install_requires=["colorama", "prompt_toolkit"],
     entry_points={
         'console_scripts': [
-            'pistol=pistol.ep:ep'
+            'pistol=pistol.ep:ep',
+            'pistol.verbose=pistol.verbose:ep'
         ]
     },
 )
