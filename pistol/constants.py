@@ -20,6 +20,7 @@ JSON_FRAME: str = """
     "cd_history": [],
     "aliases": {},
     "props": {},
-    "last_location": ""
+    "last_location": "",
+    "cache": []
 }
 """

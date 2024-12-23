@@ -189,3 +189,27 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 - removing an alias has a confirmation message now
 - minor changes
 - typo fixes
+
+# 2.4: `scs` update
+- HUGE update
+- added `scs`
+- - scs stands for smart command suggestions
+- - will gather used commands and suggest them using tab completion
+- - collection of commands can be disabled with `prop scs-collection false`
+- - using scs in tab completion can be disabled with `prop scs false`
+- - you can run `prop scs scs-ignore-paths false` to only receive suggestions of commands you ran in the **same directory** as where you ran them for the first time.
+- new commands
+- - `rms` to remove a `scs` suggestion
+- - `cs` to remove all `scs` suggestions
+- removed commands
+- - `root`
+- added props
+- - `scs` (mentioned above)
+- - `scs-collection` (mentioned above)
+- - `scs-ignore-paths` (mentioned above)
+- - `scs-refresh` - choose whether scs is saved to the meta file each time `re` is run. this does not affect run speed of `re`
+- - `suggest-files` - choose whether files are suggested for tab completion
+- - `meta-size-warning` - choose whether to warn the user if pistol's meta file reaches over 500kb in size. recommended to keep enabled.
+- you can run pistol in verbose using either the `pistol.verbose` command (instead of `pistol`) or the `verbose` file using `python3 -m pistol.verbose` or similar.
+- added explanations for all the meta entries using the `meta` command
+- MANY other changes

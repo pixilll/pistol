@@ -22,6 +22,7 @@ from .logging import (
     important,
     hint
 )
+from .scs_cache import SCSCacheManager
 from .timestamp import Timestamp
 from .subprocess import subprocess_run
 from .meta import MetaJSON
@@ -33,11 +34,13 @@ history: InMemoryHistory = InMemoryHistory()
 def main() -> None:
     meta: MetaJSON = MetaJSON(DIR / "meta.json")
     meta.create()
-    at: str = (meta.read()["last_location"] or os.getcwd()) if meta.fetch("persistent-location").state else os.getcwd()
+    scs_cm: SCSCacheManager = SCSCacheManager(meta)
+    scs_cm.load()
+    at: str = (meta.read()["last_location"] or os.getcwd()) if meta.fetch("persistent-location") else os.getcwd()
     if len(sys.argv) > 1:
         if sys.argv[1] == "storage":
             at = str(STORAGE_PATH)
-        elif sys.argv[1] == "last" and meta.fetch("persistent-location").state:
+        elif sys.argv[1] == "last" and meta.fetch("persistent-location"):
             at = meta.read()["last_location"] or os.getcwd()
         else:
             at = sys.argv[1]
@@ -62,14 +65,20 @@ def main() -> None:
     solo_mode: str = ""
     aliases: dict[str, str] = meta.read()["aliases"]
     while True:
-        if (os.path.getsize(meta.path) / 1024) > 500: # larger than 100kb
+        if (os.path.getsize(meta.path) / 1024) > 500 and meta.fetch("meta-size-warning"): # larger than 500kb
             warning("pistol's meta file is getting quite big! run meta to learn more and free up space.")
+            hint("run prop meta-size-warning false to disable this warning.")
         try:
             loc: Path = mutable_location.path
             disp_loc: str = "storage" if str(loc) == str(STORAGE_PATH) else loc
-            autocomplete: list[str] = [f"./{item}" for item in os.listdir(loc) if not item.startswith(".")] + [".."]
+            autocomplete: list[str] = []
+            if meta.fetch("suggest-files"):
+                autocomplete += [f"./{item}" for item in os.listdir(loc) if not item.startswith(".")] + [".."]
+            if meta.fetch("scs"):
+                autocomplete += scs_cm.suggest_commands(loc)
             completer: WordCompleter = WordCompleter(autocomplete, ignore_case=True)
             session: PromptSession = PromptSession(history=history, completer=completer)
+            command_protection: bool = False
             try:
                 if solo_mode:
                     prompt_text: FormattedText = FormattedText([
@@ -104,6 +113,7 @@ def main() -> None:
                     continue
                 except KeyboardInterrupt:
                     full_command: str = "exit --no-hint"
+                    command_protection = True
                     print()
                 except EOFError:
                     print()
@@ -118,8 +128,10 @@ def main() -> None:
                 continue
             command: str = new[0]
             args: list[str] = new[1:]
-
-            cmd_history.append((Timestamp.from_now() if meta.fetch("timestamps").state else "n/a", full_command))
+            if not command_protection:
+                cmd_history.append((Timestamp.from_now() if meta.fetch("timestamps") else "n/a", full_command))
+                if meta.fetch("scs-collection"):
+                    scs_cm.add(loc, full_command)
 
             try:
                 def refresh():
@@ -131,6 +143,8 @@ def main() -> None:
                     meta_contents["cmd_history"] = writable_cmd_history
                     meta_contents["aliases"] = aliases
                     meta.write(meta_contents)
+                    if meta.fetch("scs-refresh"):
+                        scs_cm.save()
                 def exit_pistol():
                     refresh()
                     info("exited pistol")
@@ -221,7 +235,7 @@ def main() -> None:
                 def clear_command_history():
                     nonlocal cmd_history
                     cmd_history = []
-                def clear_from_command_history(internal: bool = False):
+                def remove_from_command_history(internal: bool = False):
                     query: str = " ".join(args)
                     for i, cmd in enumerate(cmd_history): # NOQA
                         if cmd[1] == query:
@@ -233,7 +247,7 @@ def main() -> None:
                     cmd_history.pop(i)
                     if not internal:
                         info(f"removed {query}")
-                    clear_from_command_history(internal=True)
+                    remove_from_command_history(internal=True)
                     return True
                 def remove_from_aliases():
                     try:
@@ -247,15 +261,20 @@ def main() -> None:
                 def analyse():
                     info(f"pistol's meta file is currently {os.path.getsize(meta.path) / 1024:.2f}kb large")
                     info(f"it is stored in {meta.path}")
-                    info(f"the meta file includes {len(cd_history)} cd history item(s),")
-                    info(f"{len(cmd_history)} command history item(s),")
+                    info(f"the meta file includes {len(cd_history)} cd history item{'s' if len(cd_history) != 1 else ''},")
+                    info(f"{len(cmd_history)} command history item{'s' if len(cmd_history) != 1 else ''},")
                     info(f"and {len(aliases)} alias(es).")
                     info("to free up this space, you can run:")
-                    info("- cch to clear command history (usually takes up the most space)")
-                    info("- ccdh to clear cd history")
-                    info("- ca to clear aliases")
+                    info("- cch to clear command history [1] (usually takes up the most space)")
+                    info("- ccdh to clear cd history [2]")
+                    info("- ca to clear aliases [3]")
+                    info("- cs to clear scs cache [4]")
                     info("- prop timestamps false to disable timestamps for command history items. this significantly reduces the size of the items.")
-                    important("prop auto-re is disabled. remember to run re so changes can take effect") if not meta.fetch("auto-re").state else ...
+                    hint("[1] command history includes commands and timestamps used by the rs command.")
+                    hint("[2] cd history includes the paths of the locations you were in used by ucd and cdh.")
+                    hint("[3] aliases include the names and full commands of the aliases you created.")
+                    hint("[4] scs cache includes the commands and locations used in the tab completions.")
+                    important("prop auto-re is disabled. remember to run re so changes can take effect") if not meta.fetch("auto-re") else ...
                 def set_property():
                     meta_contents = meta.read()
                     try:
@@ -273,6 +292,18 @@ def main() -> None:
                     else:
                         info(f"prop {args[0]} - not specified; cannot define state.")
                     hint(f"use prop {args[0]} true/false to switch the state")
+                def remove_suggestion():
+                    arg1: str | None = (args[1] if len(args) >= 2 else "").lower()
+                    if arg1 in ["here", ".", ""]:
+                        path = loc
+                    elif arg1 in ["any", "all", "*"]:
+                        path = None
+                    elif Path(arg1).exists():
+                        path = Path(arg1)
+                    else:
+                        error(f"invalid symbol {arg1}: try entering here to choose the current directory, * to apply to all directories, or an absolute path.")
+                        return
+                    scs_cm.remove_command(args[0] if len(args) >= 1 else None, path)
                 try:
                     commands: dict = {
                         "exit": lambda: exit_pistol(),
@@ -294,7 +325,6 @@ def main() -> None:
                             run_solo(c)
                         ),
                         "whereami": lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"),
-                        "root": lambda: mutable_location.set(SYS_ROOT, cd_history),
                         "search": lambda: webbrowser.open(args[0]),
                         "st": lambda: st(),
                         "rs": lambda: reverse_search(),
@@ -302,7 +332,7 @@ def main() -> None:
                             clear_command_history(),
                             info("command history cleared")
                         ),
-                        "rmc": lambda: clear_from_command_history(),
+                        "rmc": lambda: remove_from_command_history(),
                         "alias": lambda: aliases.update({args[0]: " ".join([f"\"{arg}\"" for arg in args[1:]])}),
                         "rma": lambda: remove_from_aliases(),
                         "ca": lambda: (
@@ -314,7 +344,13 @@ def main() -> None:
                         "re": lambda: (
                             refresh(),
                             info("refreshed meta file")
+                        ),
+                        "rms": lambda: remove_suggestion(),
+                        "cs": lambda: (
+                            scs_cm.clear(),
+                            info("scs cache cleared")
                         )
+
                     }
                     solo_commands: list[str] = [
                         "solo",
@@ -331,7 +367,7 @@ def main() -> None:
                 except KeyError:
                     error(f"{command} is not a valid command")
                     hint(f"try solo {full_command}")
-                if meta.fetch("auto-re", PropState(True)).state:
+                if meta.fetch("auto-re"):
                     refresh()
             except IndexError:
                 error(f"not enough arguments supplied for {command}")
