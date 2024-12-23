@@ -49,10 +49,10 @@ def main() -> None:
     if "-n" in sys.argv or "--new" in sys.argv:
         match PLATFORM:
             case "windows":
-                subprocess_run(["cmd", "/C", "start", "python", "-m", repr(EP_MODULE), abs_at, "--running-as-new"], "internal")
+                subprocess_run(["cmd", "/C", "start", "pistol", abs_at, "--running-as-new"], "internal")
             case "linux":
                 hint("not working? make sure gnome-terminal is available")
-                subprocess_run(["gnome-terminal", "--", "bash", "-c", f"cd {SYS_ROOT}; python3 -m '{EP_MODULE}' {abs_at} --running-as-new; exec bash"], "internal")
+                subprocess_run(["gnome-terminal", "--", "bash", "-c", f"cd {SYS_ROOT}; pistol {abs_at} --running-as-new; exec bash"], "internal")
             case _:
                 error("unidentified operating system; could not find a way to open a new terminal.")
         exit(0)

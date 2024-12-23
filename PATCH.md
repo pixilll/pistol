@@ -213,3 +213,6 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 - you can run pistol in verbose using either the `pistol.verbose` command (instead of `pistol`) or the `verbose` file using `python3 -m pistol.verbose` or similar.
 - added explanations for all the meta entries using the `meta` command
 - MANY other changes
+
+# 2.4.1
+- -n|--new argument now works on `pipx` releases as well.
