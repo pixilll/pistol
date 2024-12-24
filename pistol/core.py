@@ -12,7 +12,6 @@ from .constants import (
     DIR,
     STORAGE_PATH,
     PLATFORM,
-    EP_MODULE,
     SYS_ROOT
 )
 from .logging import (
@@ -142,6 +141,7 @@ def main() -> None:
                         writable_cmd_history.append((timestamp.to_dict() if timestamp != "n/a" else timestamp, cmd))
                     meta_contents["cmd_history"] = writable_cmd_history
                     meta_contents["aliases"] = aliases
+                    meta_contents["last_location"] = str(loc)
                     meta.write(meta_contents)
                     if meta.fetch("scs-refresh"):
                         scs_cm.save()

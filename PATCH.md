@@ -216,3 +216,6 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 
 # 2.4.1
 - -n|--new argument now works on `pipx` releases as well.
+
+# 2.4.2
+- fixed persistent locations
