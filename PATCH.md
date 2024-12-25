@@ -219,3 +219,11 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 
 # 2.4.2
 - fixed persistent locations
+
+# 2.4.3
+- added `fallback solo`
+- - if a command does not exist, pistol will automatically insert `solo ` before it
+- - this can be disabled with `prop fallback-solo false`
+- - a message will be displayed when `fallback solo` is activated.
+- - this message can also be disabled with `prop message-on-fallback false`
+- - disabling `message-on-fallback` will keep all other functionality, it will only disable that one message.

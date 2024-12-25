@@ -304,69 +304,75 @@ def main() -> None:
                         error(f"invalid symbol {arg1}: try entering here to choose the current directory, * to apply to all directories, or an absolute path.")
                         return
                     scs_cm.remove_command(args[0] if len(args) >= 1 else None, path)
-                try:
-                    commands: dict = {
-                        "exit": lambda: exit_pistol(),
-                        "cd": lambda: mutable_location.set(args[0], cd_history),
-                        "ucd": lambda: undo_cd(),
-                        "cdh": lambda: view_cd_history(),
-                        "ccdh": lambda: (
-                            clear_cd_history(),
-                            info("cd history cleared")
-                        ),
-                        "solo": lambda c: run_solo(c),
-                        "clear": lambda: subprocess.run("clear"),
-                        "cls": lambda: subprocess.run("clear"),
-                        "help": lambda: webbrowser.open("https://github.com/pixilll/pistol/blob/main/README.md"),
-                        "version": lambda: info(f"pistol for {PLATFORM} {VERSION}"),
-                        "pwsolo": lambda c: (
-                            args.insert(0, "pwsh"),
-                            args.insert(1, "-Command"),
-                            run_solo(c)
-                        ),
-                        "whereami": lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"),
-                        "search": lambda: webbrowser.open(args[0]),
-                        "st": lambda: st(),
-                        "rs": lambda: reverse_search(),
-                        "cch": lambda: (
-                            clear_command_history(),
-                            info("command history cleared")
-                        ),
-                        "rmc": lambda: remove_from_command_history(),
-                        "alias": lambda: aliases.update({args[0]: " ".join([f"\"{arg}\"" for arg in args[1:]])}),
-                        "rma": lambda: remove_from_aliases(),
-                        "ca": lambda: (
-                            clear_aliases(),
-                            info("aliases cleared")
-                        ),
-                        "meta": lambda: analyse(),
-                        "prop": lambda: view_property() if args[1] == "check" else set_property(),
-                        "re": lambda: (
-                            refresh(),
-                            info("refreshed meta file")
-                        ),
-                        "rms": lambda: remove_suggestion(),
-                        "cs": lambda: (
-                            scs_cm.clear(),
-                            info("scs cache cleared")
-                        )
-
-                    }
-                    solo_commands: list[str] = [
-                        "solo",
-                        "pwsolo"
-                    ]
-                    if command in aliases.keys():
-                        new, _ = parse_command(aliases[command].split(" "))
-                        command = new[0]
-                        args = new[1:]
-                    if command in solo_commands:
-                        commands[command](commands)
+                commands: dict = {
+                    "exit": lambda: exit_pistol(),
+                    "cd": lambda: mutable_location.set(args[0], cd_history),
+                    "ucd": lambda: undo_cd(),
+                    "cdh": lambda: view_cd_history(),
+                    "ccdh": lambda: (
+                        clear_cd_history(),
+                        info("cd history cleared")
+                    ),
+                    "solo": lambda c: run_solo(c),
+                    "clear": lambda: subprocess.run("clear"),
+                    "cls": lambda: subprocess.run("clear"),
+                    "help": lambda: webbrowser.open("https://github.com/pixilll/pistol/blob/main/README.md"),
+                    "version": lambda: info(f"pistol for {PLATFORM} {VERSION}"),
+                    "pwsolo": lambda c: (
+                        args.insert(0, "pwsh"),
+                        args.insert(1, "-Command"),
+                        run_solo(c)
+                    ),
+                    "whereami": lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"),
+                    "search": lambda: webbrowser.open(args[0]),
+                    "st": lambda: st(),
+                    "rs": lambda: reverse_search(),
+                    "cch": lambda: (
+                        clear_command_history(),
+                        info("command history cleared")
+                    ),
+                    "rmc": lambda: remove_from_command_history(),
+                    "alias": lambda: aliases.update({args[0]: " ".join([f"\"{arg}\"" for arg in args[1:]])}),
+                    "rma": lambda: remove_from_aliases(),
+                    "ca": lambda: (
+                        clear_aliases(),
+                        info("aliases cleared")
+                    ),
+                    "meta": lambda: analyse(),
+                    "prop": lambda: view_property() if args[1] == "check" else set_property(),
+                    "re": lambda: (
+                        refresh(),
+                        info("refreshed meta file")
+                    ),
+                    "rms": lambda: remove_suggestion(),
+                    "cs": lambda: (
+                        scs_cm.clear(),
+                        info("scs cache cleared")
+                    )
+                }
+                solo_commands: list[str] = [
+                    "solo",
+                    "pwsolo"
+                ]
+                original_command: str = command
+                if command in aliases.keys():
+                    new, _ = parse_command(aliases[command].split(" "))
+                    command = new[0]
+                    args = new[1:]
+                if command not in commands.keys():
+                    if meta.fetch("fallback-solo"):
+                        if meta.fetch("message-on-fallback"):
+                            info(f"fallback: running solo {command+' [from alias '+original_command+']' if original_command in aliases.keys() else full_command} instead")
+                        args.insert(0, command)
+                        command = "solo"
                     else:
-                        commands[command]()
-                except KeyError:
-                    error(f"{command} is not a valid command")
-                    hint(f"try solo {full_command}")
+                        error(f"{command} is not a valid command")
+                        hint(f"try solo {full_command}")
+                        continue
+                if command in solo_commands:
+                    commands[command](commands)
+                else:
+                    commands[command]()
                 if meta.fetch("auto-re"):
                     refresh()
             except IndexError:
