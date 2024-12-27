@@ -227,3 +227,50 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 - - a message will be displayed when `fallback solo` is activated.
 - - this message can also be disabled with `prop message-on-fallback false`
 - - disabling `message-on-fallback` will keep all other functionality, it will only disable that one message.
+
+# 2.5: plugin update
+- HUGE update
+- added support for user-made plugins
+- - there are currently two plugin managers that come with pistol:
+- - `prop` and `shotgun`
+- - here is a table to help you choose a plugin manager:
+- - (plugin_name can be replaced with any other plugin)
+
+| feature                                  | `shotgun` command             | `prop` command                |
+|------------------------------------------|-------------------------------|-------------------------------|
+| install a plugin                         | `shotgun install my_plugin`   | not supported                 |
+| uninstall a plugin                       | `shotgun uninstall my_plugin` | not supported                 |
+| enable a plugin                          | `shotgun enable my_plugin`    | `prop plugin:my_plugin true`  |
+| disable a plugin                         | `shotgun disable my_plugin`   | `prop plugin:my_plugin false  |
+| check if a plugin is enabled or disabled | not supported                 | `prop plugin:my_plugin check` |
+| list all installed plugins               | `shotgun list`                | `prop plugin:* check`         |
+| enable all plugins                       | `shotgun enable *`            | `prop plugin:* true`          |
+| disable all plugins                      | `shotgun disable *`           | `prop plugin:* false`         |
+| check the absolute location of a plugin  | `shotgun where my_plugin`     | not supported                 |
+
+- - overall, it is recommended to use `shotgun` for regular tasks, as `prop` lacks some vital features in terms of plugin management
+- - how to create a pistol plugin:
+
+## step 1: create a project structure:
+```
+my_plugin/
+  my_plugin/
+    ... (enter files as needed)
+  .pistol
+```
+## step 2: set up your `.pistol` file
+- the `.pistol` file is the heart of your plugin as it decides the entrypoint.
+- example `.pistol` file:
+```
+["python3", "$pistol.this$/my_plugin/main.py", "$pistol.args$", "--at", "$pistol.loc$"]
+```
+- the file should follow the shape of a python list object.
+- the contents of the `.pistol` file will be run in the default terminal
+- variables:
+- - `$pistol.this$` links to the absolute path of the directory where the `.pistol` file lies when it has been installed. bad, unexpected things may happen if you don't use this in your paths.
+- - `$pistol.args$` links to arguments provided after the keyword. this should be used in quotes.
+- - `$pistol.loc$` links to the current working directory in pistol.
+- other changes:
+- `message-on-fallback` renamed to `disable-fallback-message` and is enabled by default
+- more small changes
+- more quality of life changes

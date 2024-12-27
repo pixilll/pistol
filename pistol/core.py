@@ -11,6 +11,7 @@ from .mutable_path import MutablePath
 from .constants import (
     DIR,
     STORAGE_PATH,
+    PLUGINS_PATH,
     PLATFORM,
     SYS_ROOT
 )
@@ -27,6 +28,8 @@ from .subprocess import subprocess_run
 from .meta import MetaJSON
 from .parser import parse_command
 from .prop_state import PropState
+from .registry import CommandRegistry
+from .plugins import PluginManager
 
 history: InMemoryHistory = InMemoryHistory()
 
@@ -63,6 +66,13 @@ def main() -> None:
     mutable_location.set(at, [], st=at==str(STORAGE_PATH))
     solo_mode: str = ""
     aliases: dict[str, str] = meta.read()["aliases"]
+    registry = CommandRegistry()
+    plugins_json: Path = PLUGINS_PATH / "plugins.json"
+
+    if not PLUGINS_PATH.exists():
+        PLUGINS_PATH.mkdir()
+
+    plugins = PluginManager(PLUGINS_PATH, plugins_json)
     while True:
         if (os.path.getsize(meta.path) / 1024) > 500 and meta.fetch("meta-size-warning"): # larger than 500kb
             warning("pistol's meta file is getting quite big! run meta to learn more and free up space.")
@@ -153,7 +163,7 @@ def main() -> None:
                     if running_as_new:
                         hint("press ^D to exit the terminal entirely")
                     exit()
-                def run_solo(c: list[str]):
+                def run_solo():
                     nonlocal solo_mode
 
                     if args not in [
@@ -162,7 +172,7 @@ def main() -> None:
                     ]:
                         force_cwd: bool = "--force-cwd" in args
                         args.remove("--force-cwd") if "--force-cwd" in args else ...
-                        if args[0] in c:
+                        if args[0] in registry.commands:
                             warning(f"{args[0]} may not work properly when executing using {solo_mode or command}")
                         old_dir: str = os.getcwd()
                         try:
@@ -263,6 +273,7 @@ def main() -> None:
                     info(f"it is stored in {meta.path}")
                     info(f"the meta file includes {len(cd_history)} cd history item{'s' if len(cd_history) != 1 else ''},")
                     info(f"{len(cmd_history)} command history item{'s' if len(cmd_history) != 1 else ''},")
+                    info(f"{len(scs_cm.cache)} scs cache item{'s' if len(scs_cm.cache) != 1 else ''},")
                     info(f"and {len(aliases)} alias(es).")
                     info("to free up this space, you can run:")
                     info("- cch to clear command history [1] (usually takes up the most space)")
@@ -276,6 +287,12 @@ def main() -> None:
                     hint("[4] scs cache includes the commands and locations used in the tab completions.")
                     important("prop auto-re is disabled. remember to run re so changes can take effect") if not meta.fetch("auto-re") else ...
                 def set_property():
+                    if args[0].startswith("plugin:"):
+                        if args[0] == "plugin:*":
+                            plugins.enable_all_plugins() if PropState.from_string(args[1]).state else plugins.disable_all_plugins()
+                        else:
+                            plugins.enable_plugin(args[0].removeprefix("plugin:")) if PropState.from_string(args[1]).state else plugins.disable_plugin(args[0].removeprefix("plugin:"))
+                        return
                     meta_contents = meta.read()
                     try:
                         state = PropState.from_string(args[1])
@@ -287,11 +304,30 @@ def main() -> None:
                         info(f"{args[0]} set to {state.to_string()}")
                 def view_property():
                     props = meta.read()["props"]
-                    if args[0] in list(props.keys()):
-                        info(f"prop {args[0]} - {PropState(props[args[0]]).to_string()}")
+                    plugin_mode: bool = args[0].startswith('plugin:')
+                    if args[0] == "*":
+                        for prop_name, prop_state in list(props.items()):
+                            state = PropState(prop_state).to_string()
+                            info(f"prop {prop_name} - {state}")
+                    elif plugin_mode:
+                        plugin = args[0].removeprefix("plugin:")
+                        if plugin == "*":
+                            for prop_name, _ in plugins.list_plugins():
+                                state = plugins.plugins.get(prop_name)
+                                state = "not installed" if not state else ("enabled" if state["enabled"] else "disabled")
+                                info(f"plugin {prop_name} - {state}")
+                        else:
+                            state = plugins.plugins.get(plugin)
+                            state = "not installed" if not state else ("enabled" if state["enabled"] else "disabled")
+                            info(f"plugin {plugin} - {state}")
+                            hint(f"use prop {args[0]} true/false or shotgun enable/disable {plugin} to switch the state")
+                    elif args[0] in list(props.keys()):
+                        state = PropState(props[args[0]]).to_string()
+                        info(f"prop {args[0]} - {state}")
+                        hint(f"use prop {args[0]} true/false to switch the state")
                     else:
                         info(f"prop {args[0]} - not specified; cannot define state.")
-                    hint(f"use prop {args[0]} true/false to switch the state")
+                        hint(f"use prop {args[0]} true/false to switch the state")
                 def remove_suggestion():
                     arg1: str | None = (args[1] if len(args) >= 2 else "").lower()
                     if arg1 in ["here", ".", ""]:
@@ -304,75 +340,130 @@ def main() -> None:
                         error(f"invalid symbol {arg1}: try entering here to choose the current directory, * to apply to all directories, or an absolute path.")
                         return
                     scs_cm.remove_command(args[0] if len(args) >= 1 else None, path)
-                commands: dict = {
-                    "exit": lambda: exit_pistol(),
-                    "cd": lambda: mutable_location.set(args[0], cd_history),
-                    "ucd": lambda: undo_cd(),
-                    "cdh": lambda: view_cd_history(),
-                    "ccdh": lambda: (
-                        clear_cd_history(),
-                        info("cd history cleared")
-                    ),
-                    "solo": lambda c: run_solo(c),
-                    "clear": lambda: subprocess.run("clear"),
-                    "cls": lambda: subprocess.run("clear"),
-                    "help": lambda: webbrowser.open("https://github.com/pixilll/pistol/blob/main/README.md"),
-                    "version": lambda: info(f"pistol for {PLATFORM} {VERSION}"),
-                    "pwsolo": lambda c: (
-                        args.insert(0, "pwsh"),
-                        args.insert(1, "-Command"),
-                        run_solo(c)
-                    ),
-                    "whereami": lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"),
-                    "search": lambda: webbrowser.open(args[0]),
-                    "st": lambda: st(),
-                    "rs": lambda: reverse_search(),
-                    "cch": lambda: (
-                        clear_command_history(),
-                        info("command history cleared")
-                    ),
-                    "rmc": lambda: remove_from_command_history(),
-                    "alias": lambda: aliases.update({args[0]: " ".join([f"\"{arg}\"" for arg in args[1:]])}),
-                    "rma": lambda: remove_from_aliases(),
-                    "ca": lambda: (
-                        clear_aliases(),
-                        info("aliases cleared")
-                    ),
-                    "meta": lambda: analyse(),
-                    "prop": lambda: view_property() if args[1] == "check" else set_property(),
-                    "re": lambda: (
-                        refresh(),
-                        info("refreshed meta file")
-                    ),
-                    "rms": lambda: remove_suggestion(),
-                    "cs": lambda: (
-                        scs_cm.clear(),
-                        info("scs cache cleared")
-                    )
-                }
-                solo_commands: list[str] = [
-                    "solo",
-                    "pwsolo"
-                ]
+                def manage_plugins():
+                    if len(args) < 1:
+                        error("shotgun: please enter a command")
+                        args.append("help")
+                    match args[0]:
+                        case "install":
+                            if len(args) <= 2:
+                                error("shotgun: usage: shotgun install <plugin_name:text> <plugin_source:path|url>")
+                                return
+                            plugins.install_plugin(args[1], args[2])
+                        case "uninstall":
+                            if len(args) <= 1:
+                                error("shotgun: usage: shotgun uninstall <plugin_name:text>")
+                                return
+                            plugins.uninstall_plugin(args[1])
+                        case "list":
+                            plugin_list = plugins.list_plugins()
+                            info("installed plugins:")
+                            for plugin_name, plugin_info in plugin_list: # NOQA
+                                info(f"- {plugin_name} - {'enabled' if plugin_info['enabled'] else 'disabled'}")
+                        case "enable":
+                            if len(args) <= 1:
+                                error("shotgun: usage: shotgun enable <plugin_name:text>")
+                                return
+                            if args[1] == "*":
+                                plugins.enable_all_plugins()
+                            else:
+                                plugins.enable_plugin(args[1])
+                        case "disable":
+                            if len(args) <= 1:
+                                error("shotgun: usage: shotgun disable <plugin_name:text>")
+                                return
+                            if args[1] == "*":
+                                plugins.disable_all_plugins()
+                            else:
+                                plugins.disable_plugin(args[1])
+                        case "where":
+                            if len(args) <= 1:
+                                error("shotgun: usage: shotgun where <plugin_name:text>")
+                                return
+                            info(f"{args[1]} found at {PLUGINS_PATH / args[1]}") if (PLUGINS_PATH / args[1]).exists() else info(f"{args[1]} not found")
+                        case "help":
+                            info("- install - install a plugin")
+                            info("- uninstall - uninstall a plugin")
+                            info("- list - list all installed plugins")
+                            info("- enable - enable a plugin. provide * as argument 1 to enable all plugins.")
+                            info("- disable - disable a plugin. provide * as argument 1 to disable all plugins.")
+                            info("- help - display this help message")
+
+                registry.register("exit", lambda: exit_pistol())
+                registry.register("cd", lambda: mutable_location.set(args[0], cd_history))
+                registry.register("ucd", lambda: undo_cd())
+                registry.register("cdh", lambda: view_cd_history())
+                registry.register("ccdh", lambda: (
+                    clear_cd_history(),
+                    info("cd history cleared")
+                ))
+                registry.register("solo", lambda: run_solo())
+                registry.register("clear", lambda: subprocess.run("clear"))
+                registry.register("cls", lambda: subprocess.run("clear"))
+                registry.register("help", lambda: webbrowser.open("https://github.com/pixilll/pistol/blob/main/README.md"))
+                registry.register("version", lambda: info(f"pistol for {PLATFORM} {VERSION}"))
+                registry.register("pwsolo", lambda: (
+                    args.insert(0, "pwsh"),
+                    args.insert(1, "-Command"),
+                    run_solo()
+                ))
+                registry.register("whereami", lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"))
+                registry.register("search", lambda: webbrowser.open(args[0]))
+                registry.register("st", lambda: st())
+                registry.register("rs", lambda: reverse_search())
+                registry.register("cch", lambda: (
+                    clear_command_history(),
+                    info("command history cleared")
+                ))
+                registry.register("rmc", lambda: remove_from_command_history())
+                registry.register("alias", lambda: aliases.update({args[0]: " ".join([f"\"{arg}\"" for arg in args[1:]])}))
+                registry.register("rma", lambda: remove_from_aliases())
+                registry.register("ca", lambda: (
+                    clear_aliases(),
+                    info("aliases cleared")
+                ))
+                registry.register("meta", lambda: analyse())
+                registry.register("prop", lambda: view_property() if args[1] == "check" else set_property())
+                registry.register("re", lambda: (
+                    refresh(),
+                    info("refreshed meta file")
+                ))
+                registry.register("rms", lambda: remove_suggestion())
+                registry.register("cs", lambda: (
+                    scs_cm.clear(),
+                    info("scs cache cleared")
+                ))
+                registry.register("shotgun", lambda: manage_plugins())
+                for plugin_name, plugin_info in plugins.list_enabled_plugins():
+                    try:
+                        plugin_path: Path = PLUGINS_PATH / plugin_name
+                        with (plugin_path / ".pistol").open() as file:
+                            contents: str = file.read()
+                            registry.register(plugin_name, lambda: subprocess_run(eval(contents\
+                                .replace("$pistol.loc$", str(loc))\
+                                .replace("$pistol.args$", ", ".join(['"'+arg+'"' for arg in args]).strip("\"'"))\
+                                .replace("$pistol.this$", str(plugin_path))),
+                                plugin_name
+                            ))
+                    except Exception as exc:
+                        warning(f"{plugin_name} failed to load: {str(exc).lower()}")
+                        hint(f"run shotgun disable {plugin_name} to disable this message")
                 original_command: str = command
                 if command in aliases.keys():
                     new, _ = parse_command(aliases[command].split(" "))
                     command = new[0]
                     args = new[1:]
-                if command not in commands.keys():
+                if command not in registry.commands.keys():
                     if meta.fetch("fallback-solo"):
-                        if meta.fetch("message-on-fallback"):
-                            info(f"fallback: running solo {command+' [from alias '+original_command+']' if original_command in aliases.keys() else full_command} instead")
+                        if not meta.fetch("disable-fallback-message"):
+                            info(f"fallback: running solo {command+' [from alias '+original_command+']' if original_command in aliases.keys() else full_command} instead. this message can be hidden by running prop disable-fallback-message true")
                         args.insert(0, command)
                         command = "solo"
                     else:
                         error(f"{command} is not a valid command")
                         hint(f"try solo {full_command}")
                         continue
-                if command in solo_commands:
-                    commands[command](commands)
-                else:
-                    commands[command]()
+                registry.execute(command)
                 if meta.fetch("auto-re"):
                     refresh()
             except IndexError:

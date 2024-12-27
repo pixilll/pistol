@@ -18,5 +18,10 @@
         "source": "https://help.gnome.org/users/gnome-terminal/stable/",
         "version": "latest",
         "install_command": null
+    },
+    "requests": {
+        "source": "pip",
+        "version": "latest",
+        "install_command": "pip install requests"
     }
 }

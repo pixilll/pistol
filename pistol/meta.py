@@ -2,7 +2,7 @@ import json
 
 from pathlib import Path
 
-from .constants import JSON_FRAME
+from .constants import META_JSON_FRAME
 from .prop_state import PropState
 
 
@@ -12,7 +12,7 @@ class MetaJSON:
     def create(self):
         if not self.path.exists():
             with self.path.open("w", encoding="utf-8") as file:
-                file.write(JSON_FRAME)
+                file.write(META_JSON_FRAME)
     def write(self, data: dict):
         with self.path.open("w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4) # NOQA

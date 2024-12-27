@@ -7,7 +7,6 @@ class SCSCacheManager:
     def __init__(self, meta: MetaJSON):
         self.meta: MetaJSON = meta
         self.cache: list[tuple[Path, str]] = []
-        self.cache: list[tuple[Path, str]] = []
     def load(self):
         self.cache = [(Path(path), command) for (path, command) in self.meta.read()["cache"]]
     def save(self):

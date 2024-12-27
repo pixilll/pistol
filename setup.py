@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 # clear the storage directory
 # make a patch entry
 # delete meta.json
+# clear the plugins directory
 # add all new commands to README.md
 # UPDATE VERSION IN __init__.py
 # always check if the pypi release finished successfully
@@ -28,7 +29,7 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.12',
-    install_requires=["colorama", "prompt_toolkit"],
+    install_requires=["colorama", "prompt_toolkit", "requests"],
     entry_points={
         'console_scripts': [
             'pistol=pistol.ep:ep',
