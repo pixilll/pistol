@@ -22,6 +22,7 @@ META_JSON_FRAME: str = """
     "aliases": {},
     "props": {},
     "last_location": "",
-    "cache": []
+    "cache": [],
+    "times_logged_on": 0
 }
 """

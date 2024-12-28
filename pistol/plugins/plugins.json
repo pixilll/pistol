@@ -2,5 +2,13 @@
     "search": {
         "source": "pistol/default-plugins/search",
         "enabled": true
+    },
+    "whereami": {
+        "source": "pistol/default-plugins/whereami",
+        "enabled": true
+    },
+    "buckshot": {
+        "source": "pistol/default-plugins/buckshot",
+        "enabled": true
     }
 }

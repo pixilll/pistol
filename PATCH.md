@@ -277,3 +277,9 @@ my_plugin/
 
 # indev
 - added `where` command to `shotgun` help message
+- `whereami` and `search` commands are now plugins that are installed by default.
+- - `whereami` can now be disabled using `shotgun disable whereami` or `prop plugin:whereami false`
+- - `search` can now be disabled using `shotgun disable search` or `prop plugin:search false`
+- added new argument for `.pistol` files: `$pistol.storage$` will now link to the absolute path of pistol's `storage` directory
+- - this was added mainly for `whereami` functionality
+- `prop` now has 

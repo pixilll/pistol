@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f45d071-f47b-4e4c-8bbf-a43265397f5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pistol/default-plugins/search/.pistol" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pistol/default-plugins/search/search/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pistol/default-plugins/whereami/.pistol" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pistol/default-plugins/whereami/whereami/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PATCH.md" beforeDir="false" afterPath="$PROJECT_DIR$/PATCH.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pistol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pistol/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/search/search/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/default-plugins/search/search/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/whereami/.pistol" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/default-plugins/whereami/.pistol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pistol/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/meta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pistol/plugins.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/plugins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pistol/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/registry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/plugins/plugins.json" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/plugins/plugins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,19 +43,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "indev",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;indev&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pistol" />

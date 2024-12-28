@@ -33,9 +33,15 @@ from .plugins import PluginManager
 
 history: InMemoryHistory = InMemoryHistory()
 
+def introduction() -> None:
+    ...
+
 def main() -> None:
     meta: MetaJSON = MetaJSON(DIR / "meta.json")
     meta.create()
+    if meta.read()["times_logged_on"] == 0:
+        introduction()
+    meta.write(meta.read() | {"times_logged_on": meta.read()["times_logged_on"] + 1})
     scs_cm: SCSCacheManager = SCSCacheManager(meta)
     scs_cm.load()
     at: str = (meta.read()["last_location"] or os.getcwd()) if meta.fetch("persistent-location") else os.getcwd()
@@ -286,16 +292,13 @@ def main() -> None:
                     important("prop auto-re is disabled. remember to run re so changes can take effect") if not meta.fetch("auto-re") else ...
                 def set_property():
                     if args[0].startswith("plugin:"):
-                        if args[0] == "plugin:*":
-                            try:
+                        try:
+                            if args[0] == "plugin:*":
                                 plugins.enable_all_plugins() if PropState.from_string(args[1]).state else plugins.disable_all_plugins()
-                            except KeyError:
-                                error(f"state must be {', '.join(PropState.options)}")
-                        else:
-                            try:
+                            else:
                                 plugins.enable_plugin(args[0].removeprefix("plugin:")) if PropState.from_string(args[1]).state else plugins.disable_plugin(args[0].removeprefix("plugin:"))
-                            except KeyError:
-                                error(f"state must be {', '.join(PropState.options)}")
+                        except KeyError:
+                            error(f"state must be {', '.join(PropState.options)}")
                         return
                     meta_contents = meta.read()
                     try:
@@ -316,13 +319,13 @@ def main() -> None:
                         plugin = args[0].removeprefix("plugin:")
                         if plugin == "*":
                             for prop_name, _ in plugins.list_plugins():
-                                state = plugins.plugins.get(prop_name)
-                                state = "not installed" if not state else ("enabled" if state["enabled"] else "disabled")
-                                info(f"plugin {prop_name} - {state}")
+                                state = plugins.plugins[prop_name]
+                                state = "enabled" if state["enabled"] else "disabled"
+                                info(f"plugin {prop_name} - {state} - located at {PLUGINS_PATH / prop_name}")
                         else:
                             state = plugins.plugins.get(plugin)
                             state = "not installed" if not state else ("enabled" if state["enabled"] else "disabled")
-                            info(f"plugin {plugin} - {state}")
+                            info(f"plugin {plugin} - {state}{(' - located at '+str(PLUGINS_PATH / plugin) if state != 'not installed' else '')}")
                             hint(f"use prop {args[0]} true/false to switch the state")
                     elif args[0] in list(props.keys()):
                         state = PropState(props[args[0]]).to_string()
