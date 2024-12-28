@@ -1,0 +1,6 @@
+{
+    "search": {
+        "source": "pistol/default-plugins/search",
+        "enabled": true
+    }
+}

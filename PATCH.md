@@ -274,3 +274,6 @@ my_plugin/
 - `message-on-fallback` renamed to `disable-fallback-message` and is enabled by default
 - more small changes
 - more quality of life changes
+
+# indev
+- added `where` command to `shotgun` help message

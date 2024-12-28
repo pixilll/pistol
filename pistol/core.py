@@ -68,10 +68,8 @@ def main() -> None:
     aliases: dict[str, str] = meta.read()["aliases"]
     registry = CommandRegistry()
     plugins_json: Path = PLUGINS_PATH / "plugins.json"
-
     if not PLUGINS_PATH.exists():
         PLUGINS_PATH.mkdir()
-
     plugins = PluginManager(PLUGINS_PATH, plugins_json)
     while True:
         if (os.path.getsize(meta.path) / 1024) > 500 and meta.fetch("meta-size-warning"): # larger than 500kb
@@ -289,19 +287,24 @@ def main() -> None:
                 def set_property():
                     if args[0].startswith("plugin:"):
                         if args[0] == "plugin:*":
-                            plugins.enable_all_plugins() if PropState.from_string(args[1]).state else plugins.disable_all_plugins()
+                            try:
+                                plugins.enable_all_plugins() if PropState.from_string(args[1]).state else plugins.disable_all_plugins()
+                            except KeyError:
+                                error(f"state must be {', '.join(PropState.options)}")
                         else:
-                            plugins.enable_plugin(args[0].removeprefix("plugin:")) if PropState.from_string(args[1]).state else plugins.disable_plugin(args[0].removeprefix("plugin:"))
+                            try:
+                                plugins.enable_plugin(args[0].removeprefix("plugin:")) if PropState.from_string(args[1]).state else plugins.disable_plugin(args[0].removeprefix("plugin:"))
+                            except KeyError:
+                                error(f"state must be {', '.join(PropState.options)}")
                         return
                     meta_contents = meta.read()
                     try:
                         state = PropState.from_string(args[1])
-                    except KeyError:
-                        error(f"state must be {', '.join(PropState.options)}, or check")
-                    else:
                         meta_contents["props"] |= {args[0]: state.state}
                         meta.write(meta_contents)
                         info(f"{args[0]} set to {state.to_string()}")
+                    except KeyError:
+                        error(f"state must be {', '.join(PropState.options)}")
                 def view_property():
                     props = meta.read()["props"]
                     plugin_mode: bool = args[0].startswith('plugin:')
@@ -320,7 +323,7 @@ def main() -> None:
                             state = plugins.plugins.get(plugin)
                             state = "not installed" if not state else ("enabled" if state["enabled"] else "disabled")
                             info(f"plugin {plugin} - {state}")
-                            hint(f"use prop {args[0]} true/false or shotgun enable/disable {plugin} to switch the state")
+                            hint(f"use prop {args[0]} true/false to switch the state")
                     elif args[0] in list(props.keys()):
                         state = PropState(props[args[0]]).to_string()
                         info(f"prop {args[0]} - {state}")
@@ -340,7 +343,7 @@ def main() -> None:
                         error(f"invalid symbol {arg1}: try entering here to choose the current directory, * to apply to all directories, or an absolute path.")
                         return
                     scs_cm.remove_command(args[0] if len(args) >= 1 else None, path)
-                def manage_plugins():
+                def shotgun():
                     if len(args) < 1:
                         error("shotgun: please enter a command")
                         args.append("help")
@@ -381,14 +384,40 @@ def main() -> None:
                                 error("shotgun: usage: shotgun where <plugin_name:text>")
                                 return
                             info(f"{args[1]} found at {PLUGINS_PATH / args[1]}") if (PLUGINS_PATH / args[1]).exists() else info(f"{args[1]} not found")
+                        case "upgrade":
+                            if len(args) <= 1:
+                                error("shotgun: usage: shotgun upgrade <plugin_name:text>")
+                                return
+                            plugins.upgrade_plugin(args[1])
                         case "help":
                             info("- install - install a plugin")
                             info("- uninstall - uninstall a plugin")
+                            info("- upgrade - reinstall a plugin from the same source it was originally installed from")
                             info("- list - list all installed plugins")
-                            info("- enable - enable a plugin. provide * as argument 1 to enable all plugins.")
-                            info("- disable - disable a plugin. provide * as argument 1 to disable all plugins.")
+                            info("- enable - enable a plugin. provide * as argument 1 to enable all plugins")
+                            info("- disable - disable a plugin. provide * as argument 1 to disable all plugins")
+                            info("- where - find the location of a plugin")
                             info("- help - display this help message")
-
+                        case _:
+                            error(f"shotgun: unknown command {args[0]}")
+                            args[0] = "help"
+                            shotgun()
+                def prop():
+                    if len(args) < 2:
+                        error("prop expected a prop to change as argument 1, and a state (true, false, enable, disable, etc.), check, install, uninstall or upgrade as argument 2")
+                        return
+                    match args[1]:
+                        case "check":
+                            view_property()
+                        case "install":
+                            plugin_parts = args[0].removeprefix("plugin:").split("@")
+                            plugins.install_plugin(*plugin_parts)
+                        case "uninstall":
+                            plugins.uninstall_plugin(args[0].removeprefix("plugin:"))
+                        case "upgrade":
+                            plugins.upgrade_plugin(args[0].removeprefix("plugin:"))
+                        case _:
+                            set_property()
                 registry.register("exit", lambda: exit_pistol())
                 registry.register("cd", lambda: mutable_location.set(args[0], cd_history))
                 registry.register("ucd", lambda: undo_cd())
@@ -407,8 +436,6 @@ def main() -> None:
                     args.insert(1, "-Command"),
                     run_solo()
                 ))
-                registry.register("whereami", lambda: info(f"{disp_loc}{(' ('+str(loc)+')') if str(loc) == str(STORAGE_PATH) else ''}"))
-                registry.register("search", lambda: webbrowser.open(args[0]))
                 registry.register("st", lambda: st())
                 registry.register("rs", lambda: reverse_search())
                 registry.register("cch", lambda: (
@@ -423,7 +450,7 @@ def main() -> None:
                     info("aliases cleared")
                 ))
                 registry.register("meta", lambda: analyse())
-                registry.register("prop", lambda: view_property() if args[1] == "check" else set_property())
+                registry.register("prop", lambda: prop())
                 registry.register("re", lambda: (
                     refresh(),
                     info("refreshed meta file")
@@ -433,7 +460,7 @@ def main() -> None:
                     scs_cm.clear(),
                     info("scs cache cleared")
                 ))
-                registry.register("shotgun", lambda: manage_plugins())
+                registry.register("shotgun", lambda: shotgun())
                 for plugin_name, plugin_info in plugins.list_enabled_plugins():
                     try:
                         plugin_path: Path = PLUGINS_PATH / plugin_name
@@ -442,12 +469,15 @@ def main() -> None:
                             registry.register(plugin_name, lambda: subprocess_run(eval(contents\
                                 .replace("$pistol.loc$", str(loc))\
                                 .replace("$pistol.args$", ", ".join(['"'+arg+'"' for arg in args]).strip("\"'"))\
-                                .replace("$pistol.this$", str(plugin_path))),
+                                .replace("$pistol.this$", str(plugin_path))\
+                                .replace("$pistol.storage$", str(STORAGE_PATH))),
                                 plugin_name
                             ))
                     except Exception as exc:
                         warning(f"{plugin_name} failed to load: {str(exc).lower()}")
                         hint(f"run shotgun disable {plugin_name} to disable this message")
+                    if plugin_name == command:
+                        break
                 original_command: str = command
                 if command in aliases.keys():
                     new, _ = parse_command(aliases[command].split(" "))
@@ -470,3 +500,4 @@ def main() -> None:
                 error(f"not enough arguments supplied for {command}")
         except KeyboardInterrupt:
             print()
+        registry.clear()

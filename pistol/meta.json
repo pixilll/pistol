@@ -1,8 +1,3041 @@
 {
-    "cmd_history": [],
+    "cmd_history": [
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "09",
+                "seconds": "42",
+                "time_format": "eu"
+            },
+            "cp pistol/default-plugins/* pistol/plugins"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "10",
+                "seconds": "10",
+                "time_format": "eu"
+            },
+            "cp pistol/default-plugins pistol/plugins"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "10",
+                "seconds": "22",
+                "time_format": "eu"
+            },
+            "cp -r pistol/default-plugins pistol/plugins"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "10",
+                "seconds": "33",
+                "time_format": "eu"
+            },
+            "shotgun"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "10",
+                "seconds": "35",
+                "time_format": "eu"
+            },
+            "shotgun lis"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "10",
+                "seconds": "37",
+                "time_format": "eu"
+            },
+            "shotgun list"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "11",
+                "seconds": "19",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "11",
+                "seconds": "30",
+                "time_format": "eu"
+            },
+            "shotgun list"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "11",
+                "seconds": "33",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "11",
+                "seconds": "41",
+                "time_format": "eu"
+            },
+            "search https://youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "13",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "shotgun uninstall searc"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "13",
+                "seconds": "16",
+                "time_format": "eu"
+            },
+            "shotgun uninstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "13",
+                "seconds": "38",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "13",
+                "seconds": "51",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "22",
+                "seconds": "28",
+                "time_format": "eu"
+            },
+            "sudo snap install openjfx"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "23",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "sudo snap install openjfx --candidate"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "23",
+                "seconds": "21",
+                "time_format": "eu"
+            },
+            "sudo snap install openjdk"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "24",
+                "seconds": "57",
+                "time_format": "eu"
+            },
+            "snap info openjfx"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "29",
+                "seconds": "48",
+                "time_format": "eu"
+            },
+            "prop plugin:*"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "29",
+                "seconds": "51",
+                "time_format": "eu"
+            },
+            "prop plugin:* check"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "30",
+                "seconds": "05",
+                "time_format": "eu"
+            },
+            "shotgun uninstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "30",
+                "seconds": "11",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "30",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "31",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "java -version"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "31",
+                "seconds": "31",
+                "time_format": "eu"
+            },
+            "sudo apt install openjdk-21-jdk"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "31",
+                "seconds": "59",
+                "time_format": "eu"
+            },
+            "shotgun uninstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "32",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "32",
+                "seconds": "03",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "35",
+                "seconds": "11",
+                "time_format": "eu"
+            },
+            "shotgun uninstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "35",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "35",
+                "seconds": "26",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "42",
+                "seconds": "21",
+                "time_format": "eu"
+            },
+            "sudo apt install node"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "42",
+                "seconds": "24",
+                "time_format": "eu"
+            },
+            "ks"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "42",
+                "seconds": "26",
+                "time_format": "eu"
+            },
+            "sudo apt install nodejs"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "42",
+                "seconds": "37",
+                "time_format": "eu"
+            },
+            "node"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "44",
+                "seconds": "52",
+                "time_format": "eu"
+            },
+            "pip install mavro"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "48",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "shotgun uninstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "48",
+                "seconds": "17",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "52",
+                "seconds": "12",
+                "time_format": "eu"
+            },
+            "shotgun reinstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "53",
+                "seconds": "03",
+                "time_format": "eu"
+            },
+            "shotgun reinstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "54",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "shotgun reinstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "54",
+                "seconds": "24",
+                "time_format": "eu"
+            },
+            "shotgun reinstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "54",
+                "seconds": "32",
+                "time_format": "eu"
+            },
+            "shotgun help"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "55",
+                "seconds": "25",
+                "time_format": "eu"
+            },
+            "shotgun help"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "55",
+                "seconds": "35",
+                "time_format": "eu"
+            },
+            "shotgun upgrade searc"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "55",
+                "seconds": "37",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "56",
+                "seconds": "44",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "57",
+                "seconds": "02",
+                "time_format": "eu"
+            },
+            "shotgun upgrade searc"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "57",
+                "seconds": "04",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "57",
+                "seconds": "28",
+                "time_format": "eu"
+            },
+            "cd .."
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "57",
+                "seconds": "29",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "57",
+                "seconds": "47",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "58",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "ucd"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "58",
+                "seconds": "16",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "58",
+                "seconds": "20",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "58",
+                "seconds": "41",
+                "time_format": "eu"
+            },
+            "home/astridot/Desktop/Project/pistol/pistol/plugins/search/search/main.mav"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "14",
+                "minutes": "58",
+                "seconds": "49",
+                "time_format": "eu"
+            },
+            "/home/astridot/Desktop/Project/pistol/pistol/plugins/search/search/main.mav"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "00",
+                "seconds": "09",
+                "time_format": "eu"
+            },
+            "/home/astridot/Desktop/Project/pistol/pistol/plugins/search/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "00",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "/home/astridot/Desktop/Project/pistol/pistol/plugins/search/search/main.mav"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "00",
+                "seconds": "33",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "00",
+                "seconds": "36",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "00",
+                "seconds": "59",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "01",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "01",
+                "seconds": "28",
+                "time_format": "eu"
+            },
+            "where mavro"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "01",
+                "seconds": "33",
+                "time_format": "eu"
+            },
+            "which mavro"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "11",
+                "seconds": "08",
+                "time_format": "eu"
+            },
+            "pip install mavro --upgrade"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "11",
+                "seconds": "13",
+                "time_format": "eu"
+            },
+            "pip install mavro --upgrade"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "11",
+                "seconds": "22",
+                "time_format": "eu"
+            },
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "15",
+                "seconds": "49",
+                "time_format": "eu"
+            },
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro -u python3"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "15",
+                "seconds": "53",
+                "time_format": "eu"
+            },
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro -u python3"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "15",
+                "seconds": "58",
+                "time_format": "eu"
+            },
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro -u python3 --verbose"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "38",
+                "seconds": "51",
+                "time_format": "eu"
+            },
+            "buckshot upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "39",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "39",
+                "seconds": "06",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "41",
+                "seconds": "08",
+                "time_format": "eu"
+            },
+            "node /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "41",
+                "seconds": "22",
+                "time_format": "eu"
+            },
+            "node openurl.js /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "41",
+                "seconds": "45",
+                "time_format": "eu"
+            },
+            "node . /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "42",
+                "seconds": "59",
+                "time_format": "eu"
+            },
+            "node . /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "43",
+                "seconds": "08",
+                "time_format": "eu"
+            },
+            "node /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "43",
+                "seconds": "16",
+                "time_format": "eu"
+            },
+            "node /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js https://youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "43",
+                "seconds": "26",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "43",
+                "seconds": "28",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "43",
+                "seconds": "50",
+                "time_format": "eu"
+            },
+            "search youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "43",
+                "seconds": "57",
+                "time_format": "eu"
+            },
+            "search https://youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "44",
+                "seconds": "20",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "44",
+                "seconds": "21",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "44",
+                "seconds": "25",
+                "time_format": "eu"
+            },
+            "search youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "44",
+                "seconds": "27",
+                "time_format": "eu"
+            },
+            "search https://youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "47",
+                "seconds": "03",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "47",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "47",
+                "seconds": "16",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "47",
+                "seconds": "17",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "47",
+                "seconds": "59",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "48",
+                "seconds": "00",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "48",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "48",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "48",
+                "seconds": "15",
+                "time_format": "eu"
+            },
+            "search https://youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "48",
+                "seconds": "27",
+                "time_format": "eu"
+            },
+            "search youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "57",
+                "seconds": "41",
+                "time_format": "eu"
+            },
+            "shotgun install whereami pistol/default-plugins/whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "57",
+                "seconds": "46",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "57",
+                "seconds": "57",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "58",
+                "seconds": "08",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "58",
+                "seconds": "11",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "58",
+                "seconds": "47",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "58",
+                "seconds": "49",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "15",
+                "minutes": "58",
+                "seconds": "50",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "03",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "05",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "st"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "08",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "13",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "19",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "36",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "03",
+                "seconds": "37",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "04",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "04",
+                "seconds": "09",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "04",
+                "seconds": "36",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "04",
+                "seconds": "37",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "05",
+                "seconds": "14",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "05",
+                "seconds": "31",
+                "time_format": "eu"
+            },
+            "buckshot upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "05",
+                "seconds": "40",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "05",
+                "seconds": "43",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "05",
+                "seconds": "45",
+                "time_format": "eu"
+            },
+            "st"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "05",
+                "seconds": "48",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "00",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "04",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "st"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "09",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "28",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "32",
+                "time_format": "eu"
+            },
+            "st"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "39",
+                "time_format": "eu"
+            },
+            "shotgun uninstall search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "41",
+                "time_format": "eu"
+            },
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "06",
+                "seconds": "44",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "10",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "10",
+                "seconds": "04",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "10",
+                "seconds": "05",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "10",
+                "seconds": "30",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "10",
+                "seconds": "32",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "11",
+                "seconds": "02",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "14",
+                "seconds": "26",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "14",
+                "seconds": "54",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "15",
+                "seconds": "11",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "15",
+                "seconds": "15",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "15",
+                "seconds": "21",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "16",
+                "seconds": "22",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "16",
+                "seconds": "40",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "30",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "33",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "36",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "40",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "51",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "52",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "18",
+                "seconds": "55",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "19",
+                "seconds": "39",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "19",
+                "seconds": "46",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "20",
+                "seconds": "13",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "20",
+                "seconds": "43",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "21",
+                "seconds": "42",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "21",
+                "seconds": "45",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "21",
+                "seconds": "49",
+                "time_format": "eu"
+            },
+            "shotgun upgrade whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "21",
+                "seconds": "53",
+                "time_format": "eu"
+            },
+            "shotgun upgrade search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "21",
+                "seconds": "56",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "21",
+                "seconds": "58",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "10",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "12",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "20",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "22",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "24",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "25",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "40",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "22",
+                "seconds": "50",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "23",
+                "seconds": "46",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "23",
+                "seconds": "55",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "24",
+                "seconds": "07",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "26",
+                "seconds": "29",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "26",
+                "seconds": "34",
+                "time_format": "eu"
+            },
+            "meta"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "27",
+                "seconds": "23",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "28",
+                "seconds": "58",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "30",
+                "seconds": "17",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "30",
+                "seconds": "21",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "30",
+                "seconds": "53",
+                "time_format": "eu"
+            },
+            "search"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "16",
+                "minutes": "31",
+                "seconds": "13",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "18",
+                "seconds": "38",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "18",
+                "seconds": "48",
+                "time_format": "eu"
+            },
+            "st"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "18",
+                "seconds": "51",
+                "time_format": "eu"
+            },
+            "echo hi"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "19",
+                "seconds": "40",
+                "time_format": "eu"
+            },
+            "echo https://youtube.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "20",
+                "seconds": "40",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "20",
+                "seconds": "52",
+                "time_format": "eu"
+            },
+            "whereami https://googe.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "21",
+                "seconds": "56",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "25",
+                "seconds": "19",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "25",
+                "seconds": "29",
+                "time_format": "eu"
+            },
+            "search https://google.com"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "17",
+                "minutes": "25",
+                "seconds": "39",
+                "time_format": "eu"
+            },
+            "st"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "16",
+                "seconds": "33",
+                "time_format": "eu"
+            },
+            "prop"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "17",
+                "seconds": "00",
+                "time_format": "eu"
+            },
+            "prop "
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "17",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "prop"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "17",
+                "seconds": "27",
+                "time_format": "eu"
+            },
+            "prop"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "19",
+                "seconds": "47",
+                "time_format": "eu"
+            },
+            "prop"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "20",
+                "seconds": "28",
+                "time_format": "eu"
+            },
+            "prop"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "42",
+                "seconds": "04",
+                "time_format": "eu"
+            },
+            "prop plugin:* check"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "42",
+                "seconds": "38",
+                "time_format": "eu"
+            },
+            "prop plugin:wheream false"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "42",
+                "seconds": "41",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami false"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "42",
+                "seconds": "43",
+                "time_format": "eu"
+            },
+            "prop plugin:* check"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "43",
+                "seconds": "57",
+                "time_format": "eu"
+            },
+            "prop plugin:wheream uninstall"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "44",
+                "seconds": "01",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami uninstall"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "19",
+                "minutes": "44",
+                "seconds": "12",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami uninstall"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "20",
+                "minutes": "12",
+                "seconds": "56",
+                "time_format": "eu"
+            },
+            "whereami"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "20",
+                "minutes": "17",
+                "seconds": "56",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami uninstalll"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "20",
+                "minutes": "18",
+                "seconds": "27",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami uninstalll"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "20",
+                "minutes": "18",
+                "seconds": "34",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami uninstall;"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "20",
+                "minutes": "18",
+                "seconds": "37",
+                "time_format": "eu"
+            },
+            "prop plugin:whereami uninstalll"
+        ],
+        [
+            {
+                "name": "saturday",
+                "day": "28",
+                "month": "12",
+                "year": "2024",
+                "hours": "20",
+                "minutes": "23",
+                "seconds": "26",
+                "time_format": "eu"
+            },
+            "git branch"
+        ]
+    ],
     "cd_history": [],
     "aliases": {},
     "props": {},
-    "last_location": "",
-    "cache": []
+    "last_location": "/home/astridot/Desktop/Project/pistol",
+    "cache": [
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "node openurl.js /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:* check"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun lis"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun list"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "cd .."
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "whereami"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "echo https://youtube.com"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "buckshot upgrade search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "echo hi"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "node"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:wheream uninstall"
+        ],
+        [
+            "/home/astridot/Desktop/Project",
+            "ucd"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "search https://youtube.com"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun help"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "java -version"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro -u python3 --verbose"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "pip install mavro --upgrade"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "node /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun reinstall search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "whereami"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun install whereami pistol/default-plugins/whereami"
+        ],
+        [
+            "/home/astridot/Desktop/Project",
+            "shotgun upgrade search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "search https://google.com"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "cp -r pistol/default-plugins pistol/plugins"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "st"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop "
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "sudo snap install openjfx"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "meta"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "/home/astridot/Desktop/Project/pistol/pistol/plugins/search/search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:whereami uninstall"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "ks"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun upgrade searc"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "node /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js https://youtube.com"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "sudo apt install nodejs"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "sudo apt install node"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:wheream false"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "shotgun upgrade whereami"
+        ],
+        [
+            "/home/astridot/Desktop/Project",
+            "search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "cp pistol/default-plugins pistol/plugins"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "st"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:whereami false"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "git branch"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "where mavro"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "sudo apt install openjdk-21-jdk"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "snap info openjfx"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "/home/astridot/Desktop/Project/pistol/pistol/plugins/search/search/main.mav"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun uninstall searc"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "home/astridot/Desktop/Project/pistol/pistol/plugins/search/search/main.mav"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun upgrade whereami"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "search youtube.com"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "which mavro"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "pip install mavro"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:*"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "mavro /home/astridot/Desktop/Project/pistol/.venv/bin/mavro -u python3"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "buckshot upgrade whereami"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "whereami https://googe.com"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun uninstall search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "node . /home/astridot/Desktop/Project/pistol/pistol/default-plugins/search/search/main.js"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun install search pistol/default-plugins/search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "cp pistol/default-plugins/* pistol/plugins"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:whereami uninstall;"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "sudo snap install openjfx --candidate"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol/pistol/storage",
+            "echo hi"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "sudo snap install openjdk"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "shotgun upgrade search"
+        ],
+        [
+            "/home/astridot/Desktop/Project/pistol",
+            "prop plugin:whereami uninstalll"
+        ]
+    ]
 }
