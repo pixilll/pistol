@@ -9,9 +9,15 @@
       <change beforePath="$PROJECT_DIR$/PATCH.md" beforeDir="false" afterPath="$PROJECT_DIR$/PATCH.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pistol/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pistol/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/search/search/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/default-plugins/search/search/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/whereami/.pistol" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/default-plugins/whereami/.pistol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/buckshot/.pistol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/buckshot/buckshot/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/search/.pistol" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/misc/plugins/search/.pistol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/search/search/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/misc/plugins/search/search/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/whereami/.pistol" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/misc/plugins/whereami/.pistol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/default-plugins/whereami/whereami/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/misc/plugins/whereami/whereami/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pistol/meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/meta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/plugins/buckshot/.pistol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pistol/plugins/buckshot/buckshot/main.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pistol/plugins/plugins.json" beforeDir="false" afterPath="$PROJECT_DIR$/pistol/plugins/plugins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +64,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pistol/misc/plugins" />
       <recent name="$PROJECT_DIR$/pistol" />
     </key>
   </component>

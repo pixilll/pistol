@@ -1,28 +1,9 @@
 {
-    "cmd_history": [
-        [
-            {
-                "name": "saturday",
-                "day": "28",
-                "month": "12",
-                "year": "2024",
-                "hours": "22",
-                "minutes": "50",
-                "seconds": "28",
-                "time_format": "eu"
-            },
-            "exit"
-        ]
-    ],
+    "cmd_history": [],
     "cd_history": [],
     "aliases": {},
     "props": {},
-    "last_location": "/home/astridot/Desktop/Project/pistol",
-    "cache": [
-        [
-            "/home/astridot/Desktop/Project/pistol",
-            "exit"
-        ]
-    ],
-    "times_logged_on": 1
+    "last_location": "",
+    "cache": [],
+    "times_logged_on": 0
 }

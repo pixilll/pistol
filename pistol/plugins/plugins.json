@@ -1,14 +1,10 @@
 {
     "search": {
-        "source": "pistol/default-plugins/search",
+        "source": "/home/astridot/Desktop/Project/pistol/pistol/misc/plugins/search",
         "enabled": true
     },
     "whereami": {
-        "source": "pistol/default-plugins/whereami",
-        "enabled": true
-    },
-    "buckshot": {
-        "source": "pistol/default-plugins/buckshot",
+        "source": "/home/astridot/Desktop/Project/pistol/pistol/misc/plugins/whereami",
         "enabled": true
     }
 }

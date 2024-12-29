@@ -241,7 +241,7 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/astridot/Desktop/
 | install a plugin                         | `shotgun install my_plugin`   | not supported                 |
 | uninstall a plugin                       | `shotgun uninstall my_plugin` | not supported                 |
 | enable a plugin                          | `shotgun enable my_plugin`    | `prop plugin:my_plugin true`  |
-| disable a plugin                         | `shotgun disable my_plugin`   | `prop plugin:my_plugin false  |
+| disable a plugin                         | `shotgun disable my_plugin`   | `prop plugin:my_plugin false` |
 | check if a plugin is enabled or disabled | not supported                 | `prop plugin:my_plugin check` |
 | list all installed plugins               | `shotgun list`                | `prop plugin:* check`         |
 | enable all plugins                       | `shotgun enable *`            | `prop plugin:* true`          |
@@ -282,4 +282,29 @@ my_plugin/
 - - `search` can now be disabled using `shotgun disable search` or `prop plugin:search false`
 - added new argument for `.pistol` files: `$pistol.storage$` will now link to the absolute path of pistol's `storage` directory
 - - this was added mainly for `whereami` functionality
-- `prop` now has 
+- `prop` now has comparable functionality to `shotgun` in terms of plugin managing
+- - here is the updated comparison table:
+
+| feature                                    | `shotgun` command                          | `prop` command                                 |
+|--------------------------------------------|--------------------------------------------|------------------------------------------------|
+| install a plugin                           | `shotgun install my_plugin path/to/source` | `prop plugin:my_plugin@path/to/source install` |
+| uninstall a plugin                         | `shotgun uninstall my_plugin`              | `prop plugin:my_plugin uninstall`              |
+| upgrade a plugin                           | `shotgun upgrade my_plugin`                | `prop plugin:my_plugin upgrade`                |
+| enable a plugin                            | `shotgun enable my_plugin`                 | `prop plugin:my_plugin true`                   |
+| disable a plugin                           | `shotgun disable my_plugin`                | `prop plugin:my_plugin false`                  |
+| check if a plugin is enabled or disabled   | not supported                              | `prop plugin:my_plugin check`                  |
+| list all installed plugins                 | `shotgun list`                             | `prop plugin:* check`                          |
+| enable all plugins                         | `shotgun enable *`                         | `prop plugin:* true`                           |
+| disable all plugins                        | `shotgun disable *`                        | `prop plugin:* false`                          |
+| check the absolute location of a plugin    | `shotgun where my_plugin`                  | `prop plugin:my_plugin check`                  |
+| check the absolute location of all plugins | not supported                              | `prop plugin:* check`                          |
+
+- plugins can now be upgraded using `shotgun upgrade my_plugin` or `prop plugin:my_plugin upgrade`
+- prop can now install and uninstall plugins
+- `default-plugins` moved to `misc/plugins`
+- fixed a bug where entering an invalid state for a prop would error out
+- added a warning when dependencies aren't satisfied
+- pistol now tracks how many times you've entered pistol.
+- - this cannot be disabled for now
+- many other changes
+- many bug fixes

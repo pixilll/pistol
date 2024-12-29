@@ -1,7 +1,14 @@
 import os, platform
+from .logging import error, hint
 
 from pathlib import Path
-from prompt_toolkit.styles import Style
+try:
+    from prompt_toolkit.styles import Style
+except ModuleNotFoundError:
+    error("missing dependencies detected: if you are running in a virtual environment on linux, make sure that environment has all dependencies satisfied every time you run.")
+    hint("you can install all dependencies using bucket dep install")
+    hint("make sure you have bkt installed (pipx install bkt)")
+    exit(1)
 
 DIR: Path = Path(__file__).parent
 STORAGE_PATH: Path = DIR / "storage"

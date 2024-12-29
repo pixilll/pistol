@@ -1,11 +1,5 @@
 import os, sys, subprocess, webbrowser
 
-from pathlib import Path
-from colorama import Style, Back
-from prompt_toolkit import PromptSession
-from prompt_toolkit.history import InMemoryHistory
-from prompt_toolkit.completion import WordCompleter
-from prompt_toolkit.formatted_text import FormattedText
 
 from .mutable_path import MutablePath
 from .constants import (
@@ -31,16 +25,19 @@ from .prop_state import PropState
 from .registry import CommandRegistry
 from .plugins import PluginManager
 
-history: InMemoryHistory = InMemoryHistory()
 
-def introduction() -> None:
-    ...
+from pathlib import Path
+from colorama import Style, Back
+from prompt_toolkit import PromptSession
+from prompt_toolkit.history import InMemoryHistory
+from prompt_toolkit.completion import WordCompleter
+from prompt_toolkit.formatted_text import FormattedText
+
+history: InMemoryHistory = InMemoryHistory()
 
 def main() -> None:
     meta: MetaJSON = MetaJSON(DIR / "meta.json")
     meta.create()
-    if meta.read()["times_logged_on"] == 0:
-        introduction()
     meta.write(meta.read() | {"times_logged_on": meta.read()["times_logged_on"] + 1})
     scs_cm: SCSCacheManager = SCSCacheManager(meta)
     scs_cm.load()
@@ -421,6 +418,7 @@ def main() -> None:
                             plugins.upgrade_plugin(args[0].removeprefix("plugin:"))
                         case _:
                             set_property()
+
                 registry.register("exit", lambda: exit_pistol())
                 registry.register("cd", lambda: mutable_location.set(args[0], cd_history))
                 registry.register("ucd", lambda: undo_cd())
