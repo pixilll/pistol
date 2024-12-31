@@ -103,24 +103,24 @@ python3 -m pip install ./pistol
 
 ## os compatibility and availability
 
-| os           | availability                       | versions compatible       |
-|--------------|------------------------------------|---------------------------|
-| windows 11   | tested, available                  | all versions              |
-| windows 8-10 | not tested, should be available    | all versions              |
-| windows <=7  | tested, not available              | no versions               |
-| ubuntu       | tested, available                  | all versions              |
-| linux*       | not tested, should be available    | all versions              |
-| macos        | not tested, probably not available | no versions (most likely) |
+| os           | availability                    | pistol versions compatible |
+|--------------|---------------------------------|----------------------------|
+| windows 11   | tested, available               | &gt;=1.0                   |
+| windows 8-10 | not tested, should be available | &gt;=1.0                   |
+| windows <=7  | tested, not available           | no versions                |
+| ubuntu       | tested, available               | &gt;=1.0                   |
+| linux*       | not tested, should be available | &gt;=1.0                   |
+| macos        | tested, not available           | no versions                |
 
 *linux means linux distributions in general, except for ubuntu which was mentioned beforehand
 
 ## python compatibility and availability
 
-| python version    | availability                              | versions compatible |
-|-------------------|-------------------------------------------|---------------------|
-| python >=3.13     | not tested, should be available available | all versions        |
-| python 3.12, 3.13 | tested, available                         | all versions        |
-| python <=3.11     | tested, not available                     | no versions         |
+| python version    | availability                              | pistol versions compatible |
+|-------------------|-------------------------------------------|----------------------------|
+| python >=3.13     | not tested, should be available available | &gt;=1.0                   |
+| python 3.12, 3.13 | tested, available                         | &gt;=1.0                   |
+| python <=3.11     | tested, not available                     | no versions                |
 
 ## dependencies
 
@@ -166,25 +166,35 @@ python3 -m pip install ./pistol
 - ucd - undo last cd
 - - example:
 ```
-<posix> /home/astridot/Desktop> cd ..
-<posix> /home/astridot> cd Documents/MyProject
-<posix> /home/astridot/Documents/MyProject>cd /home/astridot
-<posix> /home/astridot> cd /
-<posix> /> ucd
-<posix> /home/astridot> ucd
-<posix> /home/astridot/Documents> ucd
-<posix> /home/astridot> ucd
-<posix> /home/astridot/Desktop> exit
-➤➤ Exited pistol
+posix: /home/astridot/Desktop> cd ..
+posix: /home/astridot> cd Documents/MyProject
+posix: /home/astridot/Documents/MyProject>cd /home/astridot
+posix: /home/astridot> cd /
+posix: /> ucd
+posix: /home/astridot> ucd
+posix: /home/astridot/Documents> ucd
+posix: /home/astridot> ucd
+posix: /home/astridot/Desktop> exit
+➤➤ exited pistol
 ```
 - exit - exit pistol. this can also be done faster by pressing ^D chord to ^C
 - help - go to the pistol documentation page
 - cls, clear - clears the screen
 - version - returns the current running version of pistol
 - search - open an url in your browser
+- - important: this may not work if you have a modified or manually built version of pistol. you can enable this using the following commands
+```
+solo git clone https://github.com/pixilll/pistol
+buckshot install pistol/pistol/misc/plugins/search.js
+```
 - cdh - stands for cd history, displays your cd history and where the next `ucd` will take you
 - ccdh - stands for clear cd history, clears the cd history
 - whereami - see your current location (even in storage mode)
+- - important: this may not work if you have a modified or manually built version of pistol. you can enable this using the following commands
+```
+solo git clone https://github.com/pixilll/pistol
+buckshot install pistol/pistol/misc/plugins/whereami.js
+```
 - st - switch to storage mode
 - pistol - only works in solo mode, executes commands in pistol
 - - example: while in solo mode: `pistol whereami`
@@ -203,7 +213,15 @@ python3 -m pip install ./pistol
 - - argument 1 is the name
 - - argument 2 is the value
 - - the value can be true, on, off, false, disabled, enabled, or similar
-- re - refreshes the meta file
+- - example: `prop my_prop true`
+- prop (for plugins)
+- - same command as normal prop
+- - precede the plugin name with `plugin:`
+- - example: `prop plugin:my_plugin true` - enables a plugin named `my_plugin` if it is installed
+- - more info [here](https://github.com/pixilll/pistol/blob/main/CHANGELOG.md)
+- shotgun - used to manage pistol plugins easily
+- - more info [here](https://github.com/pixilll/pistol/blob/main/CHANGELOG.md)
+- re - refreshes the meta file, run automatically after every command by default (can be disabled using `prop auto-re false`)
 - ### solo
 - - solo uses the system's default shell to run further commands
 - - example:
@@ -238,9 +256,10 @@ pistol	README.md  setup.py
 <posix> /home/astridot/Desktop/Project> exit
 ➤➤ Exited pistol
 ```
+note: the above terminal snippet may be out of date and some commands may behave differently then what is shown.
 - #### what are types of solo
 - - there are multiple types of solo
 - - each type has the same concept, but different execution
 - #### current types of solo
 - - `solo` - standard execution
-- - `pwsolo` - executes in powershell, regardless of os
+- - `pwsolo` - executes in powershell, regardless of operating system

@@ -8,9 +8,9 @@ class SCSCacheManager:
         self.meta: MetaJSON = meta
         self.cache: list[tuple[Path, str]] = []
     def load(self):
-        self.cache = [(Path(path), command) for (path, command) in self.meta.read()["cache"]]
+        self.cache = [(Path(path), command) for (path, command) in self.meta.read()["scs"]]
     def save(self):
-        self.meta.write(self.meta.read() | {"cache": [(str(path), command) for (path, command) in self.cache]})
+        self.meta.write(self.meta.read() | {"scs": [(str(path), command) for (path, command) in self.cache]})
     def clear(self):
         self.cache = []
     def suggest_commands(self, path: Path):

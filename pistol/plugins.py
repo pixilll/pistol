@@ -23,7 +23,7 @@ class PluginManager:
     def list_plugins(self) -> List[tuple[str, dict]]:
         return list(self.plugins.items())
 
-    def install_plugin(self, plugin_name: str, plugin_source: str):
+    def install_plugin(self, plugin_name: str, plugin_source: str, silent: bool = False):
         if plugin_name in self.plugins:
             warning(f"plugin {plugin_name} is already installed.")
             return
@@ -47,11 +47,11 @@ class PluginManager:
                 shutil.copytree(source_path, plugin_path, dirs_exist_ok=True)
             self.plugins[plugin_name] = {"source": plugin_source, "enabled": True}
             self._save_plugins_metadata()
-            info(f"plugin {plugin_name} installed successfully.")
+            if not silent: info(f"plugin {plugin_name} installed successfully.")
         except Exception as e:
             error(f"failed to install plugin {plugin_name}: {str(e).lower()}")
 
-    def uninstall_plugin(self, plugin_name: str):
+    def uninstall_plugin(self, plugin_name: str, silent: bool = False):
         if plugin_name not in self.plugins:
             warning(f"plugin {plugin_name} is not installed.")
             return
@@ -63,9 +63,20 @@ class PluginManager:
 
             del self.plugins[plugin_name]
             self._save_plugins_metadata()
-            info(f"plugin {plugin_name} uninstalled successfully.")
+            if not silent: info(f"plugin {plugin_name} uninstalled successfully.")
         except Exception as e:
             error(f"failed to uninstall plugin {plugin_name}: {str(e).lower()}")
+
+    def upgrade_plugin(self, plugin_name: str):
+        if plugin_name not in self.plugins:
+            warning(f"plugin {plugin_name} is not installed.")
+            return
+        source = self.plugins[plugin_name]["source"]
+
+        self.uninstall_plugin(plugin_name, silent=True)
+        self.install_plugin(plugin_name, source, silent=True)
+        self._save_plugins_metadata()
+        info(f"plugin {plugin_name} reinstalled from original source: {source}")
 
     def enable_plugin(self, plugin_name: str):
         if plugin_name not in self.plugins:
