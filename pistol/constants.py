@@ -29,7 +29,7 @@ META_JSON_FRAME: str = """
     "aliases": {},
     "props": {},
     "last_location": "",
-    "cache": [],
+    "scs": [],
     "times_logged_on": 0
 }
-"""
+""".strip()

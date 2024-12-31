@@ -1,6 +1,5 @@
 import os, sys, subprocess, webbrowser
 
-
 from .mutable_path import MutablePath
 from .constants import (
     DIR,
@@ -471,7 +470,8 @@ def main() -> None:
                                 .replace("$pistol.loc$", str(loc))\
                                 .replace("$pistol.args$", ", ".join(['"'+arg+'"' for arg in args]).strip("\"'"))\
                                 .replace("$pistol.this$", str(plugin_path))\
-                                .replace("$pistol.storage$", str(STORAGE_PATH))),
+                                .replace("$pistol.storage$", str(STORAGE_PATH))\
+                                .replace("$pistol.python$", sys.executable)),
                                 plugin_name
                             ))
                     except Exception as exc:

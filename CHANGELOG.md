@@ -306,5 +306,14 @@ my_plugin/
 - added a warning when dependencies aren't satisfied
 - pistol now tracks how many times you've entered pistol.
 - - this cannot be disabled for now
+- added new argument for `.pistol` files: `$pistol.python$` will now link to the absolute path of python on your system.
+- - this can be used as a python executable
+- - python plugins now os independent :)
+- `PATCH.md` renamed to `CHANGELOG.md`
+- updated `README.md`
+- added a way to forcefully reset the `meta.json` file
+- - run `python3 -m pistol.reset_meta`
+- - this can only be used in the `pip` (excluding `pipx`) versions of pistol
+- - can also be used in version built from source if you include `/pistol/reset_meta.py`
 - many other changes
 - many bug fixes
