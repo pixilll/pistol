@@ -275,7 +275,7 @@ my_plugin/
 - more small changes
 - more quality of life changes
 
-# indev
+# 2.6
 - added `where` command to `shotgun` help message
 - `whereami` and `search` commands are now plugins that are installed by default.
 - - `whereami` can now be disabled using `shotgun disable whereami` or `prop plugin:whereami false`
