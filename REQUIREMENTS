@@ -1,0 +1,20 @@
+#
+# this is pistol's requirement file
+# this file is managed by bucket (bkt), which makes it easier to update dependencies
+#
+# how it works:
+# - run this file in a terminal using 
+# - 1. source path/to/REQUIREMENTS on linux/ubuntu
+# - 2. path/to/REQUIREMENTS on windows
+# - bucket (bkt) has to be installed for this to work. install it using pipx install bkt
+# - run bucket dep install --name * to install all dependencies
+#
+# note: lines starting with # are ignored
+# note: this file is not compatible with pip (pip install -r path/to/REQUIREMENTS will NOT work)
+# for contributors: this file should not be modified
+# for contributors: to add a dependency, run bucket dep add <arguments>
+# 
+
+echo pistol dependency list:
+bucket dep list
+echo "run bucket dep install --name <dependency|*>"

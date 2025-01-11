@@ -317,3 +317,13 @@ my_plugin/
 - - can also be used in version built from source if you include `/pistol/reset_meta.py`
 - many other changes
 - many bug fixes
+
+# 2.7
+- added new parameter to `.pistol`
+- - if `@sets-location` is mentioned anywhere in the file, the plugin will enter `alt mode`
+- - `alt mode` means that all output will be captured and only outputted after the process has finished
+- - the last line of output will not be outputted, but pistol will try to `cd` into that location.
+- - built in `alt mode` plugins will be introduced in the future
+- - disclaimer: user input is not supported in `alt mode`, and may cause issues while outputting.
+- added new installation method using `gavel`
+- - more info in `README.md`
