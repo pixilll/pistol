@@ -3,7 +3,19 @@
 ## installation
 all of these installation methods apply to the newest version of pistol unless stated otherwise.
 
-### 1. windows install using `pip` (most recommended for windows machines):
+### 1. windows & linux/ubuntu install using `gavel` (most recommended):
+- this method installs the newest version on github, so you'll be the first to receive new versions
+#### step 1: make sure `gavel` is installed
+```
+git clone https://github.com/pixilll/gavel
+pipx install ./gavel
+```
+#### step 2: install pistol
+```
+gavel install pixilll pistol
+```
+
+### 2. windows install using `pip`:
 #### step 1: make sure `pip` is updated
 ```
 python -m pip install --upgrade pip
@@ -12,7 +24,7 @@ python -m pip install --upgrade pip
 ```
 pip install pistol
 ```
-### 2. new in 2.0: linux/ubuntu install using `pipx` (most recommended for linux machines):
+### 3. new in 2.0: linux/ubuntu install using `pipx`:
 #### step 1: make sure `pipx` is installed and updated
 ```
 sudo apt install pipx
@@ -21,7 +33,7 @@ sudo apt install pipx
 ```
 pipx install pistol
 ```
-### 3. linux/ubuntu install using `pip` and `venv`:
+### 4. linux/ubuntu install using `pip` and `venv`:
 #### step 1: create a virtual environment using `venv`
 ```
 python3 -m venv .venv
@@ -38,7 +50,7 @@ python3 -m pip install --upgrade pip
 ```
 python3 -m pip install pistol
 ```
-### 4. windows fetch using `git` and install using `pip`:
+### 5. windows fetch using `git` and install using `pip`:
 #### step 1: clone the pistol repository
 ```
 git clone https://github.com/pixilll/pistol
@@ -51,7 +63,7 @@ python -m pip install --upgrade pip
 ```
 pip install ./pistol
 ```
-### 5. new in 2.0: linux/ubuntu fetch using `git` and install using `pipx`:
+### 6. new in 2.0: linux/ubuntu fetch using `git` and install using `pipx`:
 #### step 1: clone the pistol repository
 ```
 git clone https://github.com/pixilll/pistol
@@ -64,7 +76,7 @@ sudo apt install pipx
 ```
 pipx install ./pistol
 ```
-### 6. linux/ubuntu fetch using `git` and install using `pip` and `venv`:
+### 7. linux/ubuntu fetch using `git` and install using `pip` and `venv`:
 #### step 1: create a virtual environment using `venv`
 ```
 python3 -m venv .venv
@@ -85,7 +97,7 @@ python3 -m pip install --upgrade pip
 ```
 python3 -m pip install ./pistol
 ```
-### 7. build from source:
+### 8. build from source:
 #### pistol is open-source, and any source code files can be downloaded individually if needed. pistol can be built on your system relatively easily whether you're on windows or linux.
 
 #### /!\ disclaimer: installing pistol on linux using the third and fifth methods will make pistol only accessible while in the venv environment where it has been installed. you may need to redo step 2 every time you restart your terminal.
@@ -94,9 +106,9 @@ python3 -m pip install ./pistol
 
 | os      | recommended | supported                    |
 |---------|-------------|------------------------------|
-| windows | 1st         | 1st, 4th, 7th                |
-| ubuntu  | 2nd         | 2nd, 3rd, 5th, 6th, 7th      |
-| linux*  | 2nd         | 2nd, 3rd, 5th, 6th, 7th      |
+| windows | 2nd         | 1st, 2nd, 5th, 8th           |
+| ubuntu  | 3rd         | 1st, 3rd, 4th, 6th, 7th, 8th |
+| linux*  | 3rd         | 1st, 3rd, 4th, 6th, 7th, 8th |
 | macos   |             | no install methods for macos |
 
 *linux means linux distributions in general, except for ubuntu which was mentioned beforehand
@@ -133,8 +145,9 @@ python3 -m pip install ./pistol
 ### arguments
 - all pistol start methods take one argument: `<location>`
 - `<location>` means where pistol will start.
-- if `<location>` is not specified, it will be defaulted to `.`
-- location can be for ex. `.`, `..`, `/home`, `/`, `~`, `C:/`
+- if `<location>` is not specified, it will be defaulted to `last` as long as `persistent-location` is enabled. if `persistent-location` is not enabled, `<location>` is defaulted to `.`
+- location can be for ex. `.`, `..`, `/home`, `/`, `~`, `C:/`, `./my_project`, `last`
+- if `<location>` is set to `last`, it will use the location where you last logged off of `pistol`.
 - location can also be `storage`, which will enter storage mode instantly.
 - if you want to enter a directory named `storage` in `.`, specify `./storage` instead.
 ### method 1: windows, ubuntu/linux executable (recommended)
